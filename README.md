@@ -2,6 +2,8 @@
 
 This repo is the exercise baseline for workshop modules 1-6.
 
+Attendee-safe handouts for the drafted modules live under `handouts/` so attendees can use one repo for both instructions and exercise assets.
+
 ## Purpose
 
 This is a compact, production-style training application designed to support:
@@ -66,6 +68,9 @@ copilot-workshop-foundations/
 	frontend/
 		src/
 		package.json
+	handouts/
+		module-01/
+		...
 	.github/
 		copilot-instructions.md
 		instructions/
