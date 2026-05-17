@@ -36,7 +36,12 @@ IntelliJ:
 - open the `copilot-workshop-foundations` repo
 - if you want to make code changes locally, the optional clean start command is `git switch -c workshop/module-01 module-01-start`
 - sign in to GitHub Copilot Chat in your IDE
-- open the files your trainer asks you to keep in tabs
+- open these files now so you do not need to wait for the trainer to name them:
+	- `backend/src/main/java/com/workshop/petcareops/dashboard/ClinicDashboardController.java`
+	- `backend/src/main/java/com/workshop/petcareops/dashboard/ClinicDashboardService.java`
+	- `frontend/src/App.tsx`
+	- `.github/copilot-instructions.md`
+	- `workshop-assets/solution/copilot-instructions.module-02.md`
 - follow the trainer pace; checkpoints are there if you need to catch up
 
 ## Exercise 1: Ask The Codebase A Real Question
@@ -47,7 +52,7 @@ Use Chat with `@workspace` so Copilot answers from this repo instead of giving a
 
 ### Steps
 
-1. open the dashboard backend controller, the dashboard service, the frontend page, and the repo README
+1. open `backend/src/main/java/com/workshop/petcareops/dashboard/ClinicDashboardController.java`, `backend/src/main/java/com/workshop/petcareops/dashboard/ClinicDashboardService.java`, `frontend/src/App.tsx`, and `README.md`
 2. switch to Chat mode
 3. ask the prompt below
 4. review whether the answer points to actual files and a real request flow
@@ -74,13 +79,19 @@ Feel the difference between asking Copilot to explain something and asking it to
 
 ### Steps
 
-1. stay on the same repo slice
-2. ask Chat what files would need to change for a small appointment list enhancement
+1. stay on the same repo slice and keep `frontend/src/App.tsx` open
+2. in Chat mode, ask the planning prompt below and wait for the explanation only
 3. switch to Agent mode
-4. ask Agent to implement the same change without altering backend contracts
+4. repeat the implementation request as a fresh Agent prompt; do not just say "do that"
 5. if your IDE does not expose the same Agent controls, watch the trainer and focus on the result and prompt shape
 
-### Prompt
+### Chat Prompt
+
+```text
+Using @workspace and #file:frontend/src/App.tsx, explain which file or files would need to change to add a small follow-up badge next to the existing appointment status pill for visits that require follow-up. Do not implement it yet.
+```
+
+### Agent Prompt
 
 ```text
 Add a small follow-up badge next to the existing appointment status pill for visits that require follow-up. Reuse current styling patterns and do not change backend contracts.
@@ -98,11 +109,17 @@ Compare Copilot output before and after improving repository instructions.
 
 ### Steps
 
-1. ask for a small backend addition using the starting repository instructions
-2. let the trainer update or reveal the stronger `copilot-instructions.md`
-3. rerun the same prompt
+1. make sure `.github/copilot-instructions.md` and `workshop-assets/solution/copilot-instructions.module-02.md` are both open
+2. ask for a small backend addition using the starting `.github/copilot-instructions.md`
+3. let the trainer reveal or copy in the stronger instructions from `workshop-assets/solution/copilot-instructions.module-02.md`
+4. rerun the exact same prompt
 4. compare naming, structure, and consistency in the result
 5. note that the instructions file is version-controlled, so a cloned repo can inherit those conventions automatically
+
+### Files For This Exercise
+
+- weak instructions: `.github/copilot-instructions.md`
+- stronger instructions: `workshop-assets/solution/copilot-instructions.module-02.md`
 
 ### Prompt
 
@@ -119,6 +136,7 @@ The second result should align more closely with the project conventions than th
 - ask the trainer for the checkpoint prompt
 - reduce the task scope to one file or one change
 - reopen the same files the trainer is using so your context matches
+- if you switch from Chat to Agent, repeat the implementation prompt in full instead of using shorthand like "do that"
 
 ## Key Takeaways
 
