@@ -28,6 +28,7 @@ The goal is to make Copilot feel like a practical review partner on a realistic 
 - open the `copilot-workshop-foundations` repo
 - make sure you have the tags and remote branches: `git fetch --all --tags`
 - create a disposable local review branch: `git switch -c workshop/module-06-1-review review/module-06-1-candidate`
+- the `FollowUpDigest*` review files appear after you switch to the prepared review branch; they are not part of `main`
 - if you need the clean baseline for comparison, keep `module-06-1-start` available locally
 - open these files side by side:
   - `.github/prompts/review-quality.prompt.md`
