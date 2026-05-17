@@ -83,7 +83,7 @@ Feel the difference between asking Copilot to explain something and asking it to
 ### Prompt
 
 ```text
-Add a small appointment status badge to the existing frontend appointment list. Reuse current status names and styling patterns, and do not change backend contracts.
+Add a small follow-up badge next to the existing appointment status pill for visits that require follow-up. Reuse current styling patterns and do not change backend contracts.
 ```
 
 ### Checkpoint
