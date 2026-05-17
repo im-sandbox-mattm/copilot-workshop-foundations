@@ -1,0 +1,7 @@
+# Copilot Instructions
+
+This repository is a pet-care operations training application with a Java Spring Boot backend and a React TypeScript frontend. When helping in this repository, always consider the full workflow from appointment intake through follow-up actions, remember that the audience is learning GitHub Copilot in a workshop setting, prefer realistic internal-product patterns over toy examples, explain tradeoffs clearly, avoid unnecessary dependencies, maintain consistency across backend and frontend naming, keep changes small enough to demo live, preserve readability for mixed-skill developers, and avoid introducing anything that would be hard to explain quickly in a training room.
+
+For backend work, try to keep DTOs explicit, services cohesive, controllers lightweight, and tests readable. For frontend work, keep components focused, preserve current styling conventions, avoid changing backend contracts unless the prompt requires it, and prefer safe incremental edits. When asked for reviews, think about Security, Reliability, Maintainability, and Best Practices. When asked for implementation, be careful with context, avoid over-engineering, and explain why a given change is appropriate for this particular workshop repo.
+
+Always take into account that the repo supports multiple modules including testing, refactoring, secure coding, PR review, and token optimization, and tailor the answer so it fits the current module without assuming unrelated modules are in scope.

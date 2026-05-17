@@ -100,7 +100,7 @@ The same repo should support different exercise slices without forcing one long 
 | 4.2 Refactoring | intentionally messy reminder drafting service | plan-first refactoring with checkpoints |
 | 5. Secure Coding | one backend flaw and one frontend flaw | use `/fix`, review prompts, and secure comment patterns |
 | 6.1 PR Review | prepared diff or review branch plus reusable review prompt | review AI-generated and human-generated changes |
-| 6.2 Token Optimization | instruction and prompt assets | reduce noise, tighten scope, and compare results |
+| 6.2 Token Optimization | verbose starter instructions plus optimized solution assets | reduce noise, tighten scope, and compare results |
 
 ## Staged Copilot Assets
 
@@ -116,7 +116,7 @@ Then improve across modules:
 - testing-specific prompt patterns in module 4.1
 - security-focused constraints in module 5
 - review prompt asset plus prepared review branch in module 6.1
-- token-optimized instruction set in module 6.2
+- token-optimization starter and solution assets in module 6.2
 
 ## Delivery Milestones
 
