@@ -153,14 +153,34 @@ Workshop-ready slices:
 - seeded security flaws
 - reset tags or branches per module
 
+## Attendee Setup
+
+For most modules, attendees do not need to run the application locally.
+
+Minimum recommended setup for everyone:
+
+- Git
+- a Copilot-enabled IDE such as VS Code or IntelliJ
+- access to GitHub Copilot Chat
+- the ability to clone the repo and run `git fetch --all --tags`
+
+Optional local runtime setup for attendees who want to run checks themselves:
+
+- JDK 21
+- Node 20+ with npm
+
+The repo already includes the Maven wrapper and frontend package scripts, so attendees do not need a global Maven install or extra React tooling.
+
+Modules 03, 04.1, and 04.2 benefit the most from local backend test execution. Modules 01, 02, 05, 06.1, and 06.2 can still be followed effectively if the trainer runs commands live.
+
 ## Running The Baseline
 
 Backend:
 
 ```bash
 cd backend
-export JAVA_HOME="$(brew --prefix openjdk@21)/libexec/openjdk.jdk/Contents/Home"
-export PATH="$JAVA_HOME/bin:$PATH"
+# macOS/Linux: point JAVA_HOME at a JDK 21 install if it is not already set
+# Windows PowerShell: use .\mvnw.cmd instead of ./mvnw
 ./mvnw spring-boot:run
 ```
 
