@@ -13,7 +13,7 @@ The goal is to make Copilot feel like a practical review partner on a realistic 
 
 ## IDE Notes
 
-- VS Code: start in Chat for the review pass, then switch to Agent quickly for the fix and test steps; MCP is stretch only if it is already configured.
+- VS Code: start in Chat for the review pass, then switch to Agent quickly for the fix and test steps; when you switch, paste the next fix or test prompt again as a fresh Agent prompt; MCP is stretch only if it is already configured.
 - IntelliJ: use Copilot Chat for the review pass and the same prompts for the fix and test steps; if Agent or MCP controls differ in your plugin version, follow the trainer for the exact UI path and keep the prompt flow the same.
 
 ## Mode Guidance
@@ -71,8 +71,9 @@ Move quickly from the review findings to a small, reviewable fix pass.
 
 1. keep the same conversation open so the findings stay in context
 2. switch to Agent mode
-3. ask for the top 1-2 issues to be fixed, not a redesign
-4. review the plan before accepting the edits
+3. paste the prompt below again as a fresh Agent prompt instead of saying "fix those findings"
+4. ask for the top 1-2 issues to be fixed, not a redesign
+5. review the plan before accepting the edits
 
 ### Prompt
 
@@ -95,9 +96,10 @@ Use Agent to add a small safety net after the review-driven fix.
 ### Steps
 
 1. stay in Agent mode
-2. ask for focused tests that prove the fix
-3. keep the tests small and behavior-specific
-4. run the backend tests if the trainer does so live
+2. if you open a fresh Agent run for the tests, paste the prompt below again in full
+3. ask for focused tests that prove the fix
+4. keep the tests small and behavior-specific
+5. run the backend tests if the trainer does so live
 
 ### Prompt
 
@@ -140,6 +142,7 @@ The result should be a shorter, more reusable review checklist that still fits t
 - reduce the fix pass to the top 1-2 findings
 - recreate your local review branch from `review/module-06-1-candidate` if the workspace drifts too far
 - treat MCP as optional stretch, not as the step that must work for the module to succeed
+- when you move into Agent, paste the current fix or test prompt again in full instead of using shorthand
 
 ## Key Takeaways
 

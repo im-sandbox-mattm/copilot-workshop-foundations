@@ -13,7 +13,7 @@ The goal is not to teach testing theory. The goal is to make Copilot feel like a
 
 ## IDE Notes
 
-- VS Code: use Chat for the prompt comparison, then switch to Agent quickly once you want Copilot to add or refine tests.
+- VS Code: use Chat for the prompt comparison, then switch to Agent quickly once you want Copilot to add or refine tests; when you switch, paste the next testing prompt again as a fresh Agent prompt.
 - IntelliJ: use Copilot Chat for the same prompt flow; if Agent mode differs in your plugin version, keep the analysis in Chat and follow the trainer for the exact apply flow.
 
 ## Mode Guidance
@@ -86,7 +86,7 @@ Use Copilot to identify what the current test file still misses.
 ### Steps
 
 1. keep the source file and existing test file open
-2. ask the prompt below
+2. if you switch into Agent for this step, paste the prompt below again as a fresh Agent prompt
 3. review the uncovered paths Copilot identifies
 4. generate only 1-2 missing tests, not a huge rewrite
 
@@ -112,7 +112,8 @@ Improve generated tests through follow-up prompts instead of starting over.
 
 1. choose one generated test that still feels thin
 2. ask Copilot to strengthen it with a follow-up prompt
-3. focus on one refinement at a time: null handling, boundary conditions, or collaborator verification
+3. if you open a new Agent run for the refinement, paste the refinement prompt again in full
+4. focus on one refinement at a time: null handling, boundary conditions, or collaborator verification
 
 ### Prompt
 
@@ -136,7 +137,8 @@ Build the habit of reviewing AI-generated tests before treating them as useful c
 
 1. inspect whether the tests assert meaningful values
 2. check whether collaborator interactions are verified only when relevant
-3. run the tests if time allows
+3. if you move from Chat review into Agent to apply one more change, paste that follow-up prompt again as a fresh Agent prompt
+4. run the tests if time allows
 
 ### Prompt
 
@@ -159,6 +161,7 @@ You should end with a smaller set of stronger tests, not just a larger file.
 - reduce the request to one missing scenario
 - point Copilot at both the source file and existing test file again
 - ask for a test plan before asking for code
+- if you switch into Agent, paste the current testing or refinement prompt again in full instead of using shorthand
 
 ## Key Takeaways
 

@@ -13,7 +13,7 @@ The goal is to make Copilot feel sharper and faster by reducing noise, not to tu
 
 ## IDE Notes
 
-- VS Code: start in Chat or Plan for the audit, then switch to Agent quickly for the rewrite steps; if Chat Debug View is available, use it for before-and-after comparison.
+- VS Code: start in Chat or Plan for the audit, then switch to Agent quickly for the rewrite steps; when you switch, paste the next rewrite prompt again as a fresh Agent prompt; if Chat Debug View is available, use it for before-and-after comparison.
 - IntelliJ: use Copilot Chat for the same audit and rewrite prompts; if you do not have equivalent token counters, compare context size and response quality instead of exact token numbers.
 
 ## Mode Guidance
@@ -70,9 +70,10 @@ Compress the expensive always-on instructions into a smaller, higher-signal vers
 ### Steps
 
 1. switch to Agent mode
-2. ask for a concise rewrite of the verbose starter instructions
-3. keep the output in short bullets
-4. compare the result with the optimized solution file
+2. paste the prompt below again as a fresh Agent prompt instead of saying "optimize that file"
+3. ask for a concise rewrite of the verbose starter instructions
+4. keep the output in short bullets
+5. compare the result with the optimized solution file
 
 ### Prompt
 
@@ -95,9 +96,10 @@ Split specific guidance into path-specific instructions and reusable prompt file
 ### Steps
 
 1. stay in Agent mode
-2. ask for backend and frontend instruction examples plus a reusable prompt template
-3. compare the result with the prepared solution assets
-4. note how the split reduces always-on noise
+2. if you open a fresh Agent run for this split, paste the prompt below again in full
+3. ask for backend and frontend instruction examples plus a reusable prompt template
+4. compare the result with the prepared solution assets
+5. note how the split reduces always-on noise
 
 ### Prompt
 
@@ -141,6 +143,7 @@ The answer should name specific deterministic tasks like formatting, linting, or
 - constrain the rewrite to short bullets and named file targets
 - compare the result with the prepared solution assets instead of guessing what "optimized" should mean
 - if token counters are unavailable in your IDE, compare context size and output quality instead
+- if you switch into Agent, paste the current rewrite prompt again in full instead of using shorthand
 
 ## Key Takeaways
 

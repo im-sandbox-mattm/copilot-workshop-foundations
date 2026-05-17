@@ -13,7 +13,7 @@ The goal is not to teach refactoring theory. The goal is to make Copilot feel li
 
 ## IDE Notes
 
-- VS Code: use Chat or Plan for the initial smell analysis, then switch to Agent quickly for the actual refactoring and test steps.
+- VS Code: use Chat or Plan for the initial smell analysis, then switch to Agent quickly for the actual refactoring and test steps; when you switch, paste the next refactoring or test prompt again as a fresh Agent prompt.
 - IntelliJ: use Copilot Chat for the smell analysis; if Plan or Agent controls differ in your plugin version, keep the same prompt flow and follow the trainer for the exact edit/apply path.
 
 ## Mode Guidance
@@ -71,9 +71,10 @@ Apply one small refactoring with clear constraints instead of asking for a broad
 ### Steps
 
 1. choose the single highest-value issue from the analysis
-2. ask Copilot to preserve behavior and keep the public API unchanged
-3. review the plan before accepting the code changes
-4. stop after one narrow pass
+2. if you switch from Chat or Plan into Agent here, paste the prompt below again as a fresh Agent prompt
+3. ask Copilot to preserve behavior and keep the public API unchanged
+4. review the plan before accepting the code changes
+5. stop after one narrow pass
 
 ### Prompt
 
@@ -96,9 +97,10 @@ Practice a multi-turn refactoring conversation instead of treating the first ans
 ### Steps
 
 1. review the updated file
-2. ask for one additional low-risk improvement only
-3. compare the second change with the first one
-4. stop if Copilot starts broadening the scope again
+2. if you open a new Agent run for this pass, paste the prompt below again in full
+3. ask for one additional low-risk improvement only
+4. compare the second change with the first one
+5. stop if Copilot starts broadening the scope again
 
 ### Prompt
 
@@ -120,10 +122,11 @@ Use Copilot to create a safety net for the refactored code.
 
 ### Steps
 
-1. ask for 2-3 characterization tests that lock in the current behavior
-2. review whether the assertions are specific enough to prove behavior
-3. run the backend tests if time allows
-4. keep the generated tests compact and behavior-focused
+1. if you move into a fresh Agent run here, paste the prompt below again as a fresh Agent prompt
+2. ask for 2-3 characterization tests that lock in the current behavior
+3. review whether the assertions are specific enough to prove behavior
+4. run the backend tests if time allows
+5. keep the generated tests compact and behavior-focused
 
 ### Prompt
 
@@ -149,6 +152,7 @@ You should end with a narrower, cleaner service and tests that prove key paths s
 - reduce the refactor to one concern such as helper extraction or conditional cleanup
 - compare the result against the checkpoint before accepting the change
 - create a new branch from `module-04-2-start` or use a fresh clone if your workspace drifts too far
+- if you switch into Agent, paste the current refactoring or test prompt again in full instead of using shorthand
 
 ## Key Takeaways
 
