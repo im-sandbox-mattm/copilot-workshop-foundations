@@ -21,7 +21,8 @@ Use a fresh local branch per code-changing module.
 
 Important:
 
-- some early reset tags were created before this `handouts/` folder was published
+- most published reset tags were created before this `handouts/` folder was published
+- `module-03-start` is the current exception; the other published reset tags do not include `handouts/` in the tagged tree
 - open the handout you need before switching to a reset tag, or keep a second clone or worktree on `main` so you can read the handouts while working on the tagged branch
 
 ```bash
