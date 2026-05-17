@@ -19,6 +19,11 @@ Use the handouts here together with the module reset tags and prepared review br
 
 Use a fresh local branch per code-changing module.
 
+Important:
+
+- some early reset tags were created before this `handouts/` folder was published
+- open the handout you need before switching to a reset tag, or keep a second clone or worktree on `main` so you can read the handouts while working on the tagged branch
+
 ```bash
 # module 01 is optional because it is the intro module
 git switch -c workshop/module-01 module-01-start
