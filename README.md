@@ -100,7 +100,7 @@ The same repo should support different exercise slices without forcing one long 
 | --- | --- | --- |
 | 1. Beyond Autocomplete | backend + frontend + minimal `.github` context | show Ask vs Agent, `@workspace`, and a before/after instructions demo |
 | 2. Context Engineering | `.github/copilot-instructions.md`, prompt assets, a few representative files | improve prompts, open-tab context, and instruction quality |
-| 3. Legacy Modernization | isolated modernization branch or slice | narrow migration or upgrade task with clear reset |
+| 3. Legacy Modernization | backend modernization lab plus optional React starter asset | narrow migration task with test-first validation and clear reset |
 | 4.1 Testing | service layer plus one frontend component | generate missing tests and improve coverage |
 | 4.2 Refactoring | intentionally messy reminder drafting service | plan-first refactoring with checkpoints |
 | 5. Secure Coding | one backend flaw and one frontend flaw | use `/fix`, review prompts, and secure comment patterns |
@@ -118,6 +118,7 @@ Start intentionally thin:
 Then improve across modules:
 
 - stronger repository instructions in module 2
+- legacy modernization lab in module 3 plus an optional React starter asset in `workshop-assets/starter/module-03/`
 - testing-specific prompt patterns in module 4.1
 - security-focused constraints in module 5
 - review prompt asset plus prepared review branch in module 6.1

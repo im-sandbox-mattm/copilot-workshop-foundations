@@ -8,6 +8,7 @@ Use the handouts here together with the module reset tags and prepared review br
 
 - `module-01`
 - `module-02`
+- `module-03`
 - `module-04.1`
 - `module-04.2`
 - `module-05`
@@ -23,6 +24,7 @@ Use a fresh local branch per code-changing module.
 git switch -c workshop/module-01 module-01-start
 
 git switch -c workshop/module-02 module-02-start
+git switch -c workshop/module-03 module-03-start
 git switch -c workshop/module-04-1 module-04-1-start
 git switch -c workshop/module-04-2 module-04-2-start
 git switch -c workshop/module-05 module-05-start
