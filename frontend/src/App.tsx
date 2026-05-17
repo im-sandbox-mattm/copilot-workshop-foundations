@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import { fetchDashboardOverview } from './api'
+import OwnerNoticePreview from './security/OwnerNoticePreview'
 import type { DashboardOverview } from './types'
 import './App.css'
 
@@ -152,6 +153,8 @@ function App() {
           ))}
         </div>
       </section>
+
+      <OwnerNoticePreview />
     </main>
   )
 }
