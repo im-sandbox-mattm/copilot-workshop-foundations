@@ -1,0 +1,63 @@
+:root {
+  --paper: #f5eee3;
+  --paper-deep: #e8dac9;
+  --panel-muted: rgba(255, 247, 238, 0.82);
+  --ink: #5d4b3d;
+  --ink-soft: #8a6a52;
+  --ink-strong: #2f2117;
+  --signal: #b14d2b;
+  --panel-shadow: 0 18px 50px rgba(88, 53, 34, 0.12);
+  --sans: 'Aptos', 'Segoe UI', sans-serif;
+  --heading: 'Georgia', 'Times New Roman', serif;
+  font: 17px/1.5 var(--sans);
+  color: var(--ink);
+  background: radial-gradient(circle at top, rgba(255, 255, 255, 0.7), transparent 42%), linear-gradient(180deg, var(--paper), var(--paper-deep));
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+}
+
+#root {
+  max-width: 1200px;
+  margin: 0 auto;
+  min-height: 100vh;
+}
+
+h1,
+h2,
+h3,
+p {
+  margin: 0;
+}
+
+h1,
+h2,
+h3 {
+  color: var(--ink-strong);
+  font-family: var(--heading);
+  font-weight: 700;
+  line-height: 1.05;
+}
+
+h1 {
+  font-size: clamp(2.8rem, 5vw, 4.8rem);
+  margin-bottom: 12px;
+}
+
+h2 {
+  font-size: clamp(1.4rem, 2vw, 2rem);
+}
+
+h3 {
+  font-size: 1.4rem;
+}
