@@ -27,7 +27,12 @@ The goal is to leave with a more advanced feeling of control over Copilot output
 
 - open the `copilot-workshop-foundations` repo
 - start from a clean branch: `git switch -c workshop/module-02 module-02-start`
-- open the dashboard service, the frontend dashboard page, and `.github/copilot-instructions.md`
+- open these files now so you do not need to wait for the trainer to name them:
+	- `backend/src/main/java/com/workshop/petcareops/dashboard/ClinicDashboardService.java`
+	- `frontend/src/App.tsx`
+	- `frontend/src/types.ts`
+	- `.github/copilot-instructions.md`
+	- `workshop-assets/solution/copilot-instructions.module-02.md`
 - keep the trainer pace; each exercise has a visible checkpoint
 
 ## Exercise 1: Improve A Weak Prompt
@@ -42,6 +47,11 @@ See how quickly prompt quality changes the usefulness of Copilot output.
 2. review what is vague or generic in the answer
 3. rerun the task with the stronger prompt
 4. compare structure, specificity, and relevance
+
+### Files For This Exercise
+
+- `frontend/src/App.tsx`
+- `.github/copilot-instructions.md`
 
 ### Weak Prompt
 
@@ -67,7 +77,7 @@ Use open tabs and explicit references to improve Copilot's reasoning.
 
 ### Steps
 
-1. keep the dashboard service, the frontend dashboard page, and `.github/copilot-instructions.md` open
+1. keep `backend/src/main/java/com/workshop/petcareops/dashboard/ClinicDashboardService.java`, `frontend/src/App.tsx`, `frontend/src/types.ts`, and `.github/copilot-instructions.md` open
 2. ask the prompt below with `@workspace`
 3. if the answer is still generic, add a `#file:` reference to one of the open files
 4. note how the answer changes when the context is more directed
@@ -90,10 +100,16 @@ Improve the repo-wide instructions so the next Copilot response better matches t
 
 ### Steps
 
-1. review the current `.github/copilot-instructions.md`
-2. ask Copilot to suggest 5-8 tighter rules for this repo
-3. keep the rules short, directive, and repo-specific
-4. compare your result with the stronger solution file if the trainer reveals it
+1. review `.github/copilot-instructions.md`
+2. open `workshop-assets/solution/copilot-instructions.module-02.md` as the stronger comparison file
+3. ask Copilot to suggest 5-8 tighter rules for this repo
+4. if you switch from Chat to Agent for editing, repeat the rewrite prompt in full instead of saying "apply that"
+5. compare your result with `workshop-assets/solution/copilot-instructions.module-02.md`
+
+### Files For This Exercise
+
+- weak instructions: `.github/copilot-instructions.md`
+- stronger comparison file: `workshop-assets/solution/copilot-instructions.module-02.md`
 
 ### Prompt
 
@@ -115,7 +131,8 @@ Practice one advanced prompting technique that can be reused daily.
 
 1. choose one of the prompts below
 2. run it against the dashboard slice
-3. compare the result with a simpler one-shot request
+3. if you switch from Chat to Agent, paste the chosen prompt again as a fresh Agent prompt
+4. compare the result with a simpler one-shot request
 
 ### Few-Shot Prompt
 
@@ -150,6 +167,7 @@ The response should be more structured and easier to act on than a vague one-sho
 - reopen the same files the trainer is using
 - reduce the scope to one file and one change
 - ask the trainer for the stronger prompt version instead of retrying vague prompts repeatedly
+- if you switch modes, repeat the implementation or rewrite prompt in full instead of using shorthand
 
 ## Key Takeaways
 

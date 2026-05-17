@@ -32,6 +32,8 @@ The goal is to build a repeatable modernization workflow with Copilot, not to te
   - `backend/src/main/java/com/workshop/petcareops/modernization/LegacyCarePlanSnapshot.java`
   - `.github/copilot-instructions.md`
 - keep `workshop-assets/starter/module-03/LegacyOwnerTimeline.tsx` available as the optional React stretch asset
+- expect Copilot to create this test file during exercise 2:
+  - `backend/src/test/java/com/workshop/petcareops/modernization/LegacyCarePlanSnapshotServiceTest.java`
 - if you run tests locally, use the backend Maven wrapper from the `backend/` folder
 
 ## Exercise 1: Assess Before You Migrate
@@ -70,9 +72,13 @@ Create a safety net for the current behavior before the modernization pass.
 ### Steps
 
 1. switch to Agent mode
-2. ask Copilot to create characterization tests for the current service behavior
+2. paste the test-generation prompt below as a fresh Agent prompt; do not just say "add tests"
 3. keep the test scope tight and behavior-focused
 4. run the backend tests if time allows
+
+### Expected Generated File
+
+- `backend/src/test/java/com/workshop/petcareops/modernization/LegacyCarePlanSnapshotServiceTest.java`
 
 ### Prompt
 
@@ -102,6 +108,7 @@ Use Agent mode to apply a narrow modernization pass instead of a vague “clean 
 
 1. keep the conversation open so the assessment and tests stay in context
 2. ask Agent to modernize the service and DTO from Java 8 style to Java 21
+3. paste the modernization prompt again in full when you switch into this step instead of using shorthand from the prior test step
 3. review the plan before the code is applied
 4. rerun the tests if the trainer does so live
 
@@ -127,7 +134,7 @@ Reuse the same Assess -> Plan -> Execute pattern on a frontend modernization exa
 
 1. open `workshop-assets/starter/module-03/LegacyOwnerTimeline.tsx`
 2. ask Copilot to assess the class component before changing it
-3. if time allows, ask for a conversion to a functional component with hooks
+3. if time allows, switch to Agent and paste the stretch conversion prompt as a fresh Agent prompt
 4. keep this as stretch only; the main module succeeds without running the frontend
 
 ### Prompt
@@ -154,6 +161,7 @@ The room should see that the same prompt discipline works across backend and fro
 - keep the modernization target pinned to Java 8 -> Java 21 or class component -> hooks
 - reduce the task to one file and one migration step if Agent starts broadening the scope
 - recreate the branch from `module-03-start` if your workspace drifts too far
+- if you switch modes, restate the generation or modernization prompt in full instead of using shorthand
 
 ## Key Takeaways
 
