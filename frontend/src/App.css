@@ -1,32 +1,34 @@
 .app-shell {
   display: grid;
-  gap: 24px;
-  padding: 32px;
+  gap: 20px;
+  padding: 34px 28px 40px;
 }
 
 .hero-panel {
   display: grid;
-  gap: 20px;
+  gap: 18px;
   grid-template-columns: minmax(0, 2fr) minmax(280px, 1fr);
-  padding: 28px;
-  border-radius: 28px;
-  background: linear-gradient(135deg, rgba(252, 243, 224, 0.96), rgba(243, 228, 220, 0.92));
+  padding: 34px;
+  border-radius: 30px;
+  background: linear-gradient(145deg, rgba(255, 255, 255, 0.88), rgba(255, 255, 255, 0.72));
+  border: 1px solid var(--panel-stroke);
+  backdrop-filter: saturate(140%) blur(16px);
   color: var(--ink-strong);
   box-shadow: var(--panel-shadow);
 }
 
 .hero-panel--error {
   grid-template-columns: minmax(0, 1fr);
-  background: linear-gradient(135deg, rgba(255, 238, 232, 0.96), rgba(255, 248, 242, 0.92));
+  background: linear-gradient(145deg, rgba(255, 244, 243, 0.88), rgba(255, 255, 255, 0.72));
 }
 
 .eyebrow,
 .metric-card__eyebrow,
 .hero-summary__label {
   margin: 0 0 10px;
-  font-size: 0.8rem;
-  font-weight: 700;
-  letter-spacing: 0.14em;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
   text-transform: uppercase;
   color: var(--ink-soft);
 }
@@ -38,28 +40,31 @@
 .hero-summary {
   align-self: end;
   padding: 18px 20px;
-  border-radius: 20px;
-  background: rgba(255, 255, 255, 0.55);
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.8);
+  border: 1px solid var(--panel-stroke);
 }
 
 .metrics-grid {
   display: grid;
-  gap: 16px;
+  gap: 14px;
   grid-template-columns: repeat(3, minmax(0, 1fr));
 }
 
 .metric-card {
-  padding: 22px;
-  border-radius: 22px;
-  background: rgba(255, 252, 248, 0.92);
+  padding: 24px;
+  border-radius: 24px;
+  background: rgba(255, 255, 255, 0.82);
+  border: 1px solid var(--panel-stroke);
   box-shadow: var(--panel-shadow);
   text-align: left;
 }
 
 .metric-card__value {
   margin-top: 12px;
-  font-size: 1.4rem;
-  font-weight: 700;
+  font-size: 1.9rem;
+  font-weight: 620;
+  line-height: 1.1;
   color: var(--ink-strong);
 }
 
@@ -68,9 +73,10 @@
 }
 
 .appointments-panel {
-  padding: 28px;
-  border-radius: 28px;
-  background: rgba(255, 252, 248, 0.9);
+  padding: 30px;
+  border-radius: 30px;
+  background: rgba(255, 255, 255, 0.84);
+  border: 1px solid var(--panel-stroke);
   box-shadow: var(--panel-shadow);
 }
 
@@ -78,9 +84,10 @@
   display: grid;
   gap: 18px;
   grid-template-columns: minmax(0, 1.25fr) minmax(260px, 1fr);
-  padding: 28px;
-  border-radius: 28px;
-  background: rgba(255, 252, 248, 0.88);
+  padding: 30px;
+  border-radius: 30px;
+  background: rgba(255, 255, 255, 0.84);
+  border: 1px solid var(--panel-stroke);
   box-shadow: var(--panel-shadow);
 }
 
@@ -99,19 +106,27 @@
 .preview-panel__field input,
 .preview-panel__field textarea {
   width: 100%;
-  border: 1px solid rgba(121, 74, 47, 0.18);
-  border-radius: 14px;
-  padding: 12px 14px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 16px;
+  padding: 14px 16px;
   font: inherit;
   color: var(--ink-strong);
-  background: rgba(255, 255, 255, 0.72);
+  background: rgba(255, 255, 255, 0.92);
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.preview-panel__field input:focus,
+.preview-panel__field textarea:focus {
+  outline: none;
+  border-color: color-mix(in srgb, var(--signal) 58%, white 42%);
+  box-shadow: 0 0 0 4px rgba(0, 113, 227, 0.15);
 }
 
 .preview-panel__preview {
   border-radius: 22px;
   padding: 18px;
-  background: rgba(255, 255, 255, 0.72);
-  border: 1px dashed rgba(121, 74, 47, 0.2);
+  background: rgba(255, 255, 255, 0.86);
+  border: 1px dashed rgba(0, 0, 0, 0.12);
 }
 
 .preview-panel__label {
@@ -133,17 +148,17 @@
 
 .appointment-grid {
   display: grid;
-  gap: 16px;
+  gap: 14px;
   grid-template-columns: repeat(2, minmax(0, 1fr));
 }
 
 .appointment-card {
   display: grid;
   gap: 16px;
-  padding: 20px;
+  padding: 22px;
   border-radius: 22px;
   background: var(--panel-muted);
-  border: 1px solid rgba(121, 74, 47, 0.1);
+  border: 1px solid var(--panel-stroke);
 }
 
 .appointment-card__header {
@@ -164,9 +179,9 @@
   align-items: center;
   padding: 8px 12px;
   border-radius: 999px;
-  background: rgba(155, 85, 46, 0.12);
-  color: var(--ink-strong);
-  font-size: 0.75rem;
+  background: rgba(0, 113, 227, 0.12);
+  color: #0057b8;
+  font-size: 0.72rem;
   font-weight: 700;
   letter-spacing: 0.08em;
   text-transform: uppercase;
@@ -204,7 +219,7 @@
 .appointment-card__summary {
   padding: 14px 16px;
   border-radius: 16px;
-  background: rgba(255, 255, 255, 0.7);
+  background: rgba(255, 255, 255, 0.92);
 }
 
 .appointment-card__footer {
@@ -220,7 +235,7 @@
 
 @media (max-width: 900px) {
   .app-shell {
-    padding: 20px;
+    padding: 22px 16px 28px;
   }
 
   .hero-panel,

@@ -1,17 +1,21 @@
 :root {
-  --paper: #f5eee3;
-  --paper-deep: #e8dac9;
-  --panel-muted: rgba(255, 247, 238, 0.82);
-  --ink: #5d4b3d;
-  --ink-soft: #8a6a52;
-  --ink-strong: #2f2117;
-  --signal: #b14d2b;
-  --panel-shadow: 0 18px 50px rgba(88, 53, 34, 0.12);
-  --sans: 'Aptos', 'Segoe UI', sans-serif;
-  --heading: 'Georgia', 'Times New Roman', serif;
+  --paper: #f5f5f7;
+  --paper-deep: #ececf0;
+  --panel-muted: rgba(255, 255, 255, 0.78);
+  --ink: #3a3a3c;
+  --ink-soft: #6e6e73;
+  --ink-strong: #1d1d1f;
+  --signal: #0071e3;
+  --panel-shadow: 0 14px 36px rgba(0, 0, 0, 0.08);
+  --panel-stroke: rgba(0, 0, 0, 0.06);
+  --sans: 'SF Pro Text', 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --heading: 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   font: 17px/1.5 var(--sans);
   color: var(--ink);
-  background: radial-gradient(circle at top, rgba(255, 255, 255, 0.7), transparent 42%), linear-gradient(180deg, var(--paper), var(--paper-deep));
+  background:
+    radial-gradient(circle at 20% -10%, rgba(255, 255, 255, 0.9), transparent 45%),
+    radial-gradient(circle at 90% -20%, rgba(255, 255, 255, 0.7), transparent 40%),
+    linear-gradient(180deg, var(--paper), var(--paper-deep));
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
@@ -28,7 +32,7 @@ body {
 }
 
 #root {
-  max-width: 1200px;
+  max-width: 1240px;
   margin: 0 auto;
   min-height: 100vh;
 }
@@ -45,8 +49,8 @@ h2,
 h3 {
   color: var(--ink-strong);
   font-family: var(--heading);
-  font-weight: 700;
-  line-height: 1.05;
+  font-weight: 650;
+  line-height: 1.08;
 }
 
 h1 {

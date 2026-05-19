@@ -70,6 +70,12 @@ Bonus check if time allows:
 
 ### Goal
 
+- first-name
+- second-name
+- third-name
+- fourth-name
+
+
 Feel the difference between asking Copilot to explain something and asking it to build something.
 
 ### Steps
