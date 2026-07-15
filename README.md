@@ -97,7 +97,7 @@ Each module uses a different slice of the same repo. You do not need to understa
 
 | Module | Primary surface | Core focus |
 | --- | --- | --- |
-| 1. Beyond Autocomplete | backend + frontend + minimal `.github` context | explore Ask vs Agent, `@workspace`, and basic instruction impact |
+| 1. Beyond Autocomplete | backend + frontend + minimal `.github` context | explore Ask vs Agent, `#codebase`, and basic instruction impact |
 | 2. Context Engineering | `.github/copilot-instructions.md`, prompt assets, and representative files | improve prompts, file context, and instruction quality |
 | 3. Legacy Modernization | backend modernization lab plus optional React asset | modernize a focused slice with validation |
 | 4.1 Testing | service layer plus existing tests | generate missing tests and improve coverage |

@@ -4,7 +4,7 @@
 
 - using Copilot Chat to understand a codebase quickly
 - using Agent mode for a small, well-scoped change
-- seeing how `@workspace` and `copilot-instructions.md` change the quality of results
+- seeing how `#codebase` and `copilot-instructions.md` change the quality of results
 - building the mental model of where this session stops and later modules go deeper
 
 ## Module Focus
@@ -17,7 +17,7 @@ VS Code:
 
 - use the Copilot Chat panel for Ask and Agent mode
 - use inline chat for targeted in-file edits
-- `@workspace` is the main unlock for codebase-aware questions
+- `#codebase` is the main unlock for codebase-aware questions
 
 IntelliJ:
 
@@ -48,7 +48,7 @@ IntelliJ:
 
 ### Goal
 
-Use Chat with `@workspace` so Copilot answers from this repo instead of giving a generic explanation.
+Use Chat with `#codebase` so Copilot answers from this repo instead of giving a generic explanation.
 
 ### Steps
 
@@ -60,7 +60,7 @@ Use Chat with `@workspace` so Copilot answers from this repo instead of giving a
 ### Prompt
 
 ```text
-Using @workspace, explain how dashboard appointment data flows from the backend to the frontend in this repo. Keep the answer concise and point to the key files.
+Using #codebase, explain how dashboard appointment data flows from the backend to the frontend in this repo. Keep the answer concise and point to the key files.
 ```
 
 ### Checkpoint
@@ -69,7 +69,7 @@ The answer mentions real files in the repo and explains a believable end-to-end 
 
 Bonus check if time allows:
 
-- ask why `@workspace` matters compared with asking the same question without it
+- ask why `#codebase` matters compared with asking the same question without it
 
 ## Exercise 2: Compare Chat And Agent
 
@@ -88,7 +88,7 @@ Feel the difference between asking Copilot to explain something and asking it to
 ### Chat Prompt
 
 ```text
-Using @workspace and #file:frontend/src/App.tsx, explain which file or files would need to change to add a small follow-up badge next to the existing appointment status pill for visits that require follow-up. Do not implement it yet.
+Using #codebase and #file:frontend/src/App.tsx, explain which file or files would need to change to add a small follow-up badge next to the existing appointment status pill for visits that require follow-up. Do not implement it yet.
 ```
 
 ### Agent Prompt
@@ -140,7 +140,7 @@ The second result should align more closely with the project conventions than th
 
 ## Key Takeaways
 
-- `@workspace` is a major quality upgrade for codebase-aware questions
+- `#codebase` is a major quality upgrade for codebase-aware questions
 - Chat is best for understanding and Agent is best for scoped execution
 - a short `copilot-instructions.md` can noticeably improve Copilot output
 - this session is a preview of the four-layer model, not the deep dive on every advanced feature

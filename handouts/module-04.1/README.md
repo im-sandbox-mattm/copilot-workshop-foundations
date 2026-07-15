@@ -93,7 +93,7 @@ Use Copilot to identify what the current test file still misses.
 ### Prompt
 
 ```text
-Using @workspace, act as a Coverage Optimizer for FollowUpRecommendationService.
+Using #codebase, act as a Coverage Optimizer for FollowUpRecommendationService.
 Compare the source file and the existing FollowUpRecommendationServiceTest file.
 List the highest-value missing test cases first, then generate the next 2 tests that would improve confidence the most.
 ```
