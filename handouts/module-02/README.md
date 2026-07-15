@@ -3,7 +3,7 @@
 ## What You Will Practice
 
 - improving the same request by changing prompt quality
-- shaping Copilot context with open tabs, `@workspace`, and file references
+- shaping Copilot context with open tabs, `#codebase`, and file references
 - tightening repository instructions so future output is more consistent
 - using a few high-value chat tools without turning the session into a feature tour
 
@@ -14,7 +14,7 @@ The goal is to leave with a more advanced feeling of control over Copilot output
 ## IDE Notes
 
 - VS Code: use Chat for the prompt and context comparisons, then switch to Agent when you want Copilot to rewrite the instructions file.
-- IntelliJ: keep the same files open and use Copilot Chat for the comparison steps; if `@workspace` or Agent surfaces differ in your plugin version, use explicit file references and follow the trainer for the exact UI.
+- IntelliJ: keep the same files open and use Copilot Chat for the comparison steps; if `#codebase` or Agent surfaces differ in your plugin version, use explicit file references and follow the trainer for the exact UI.
 
 ## Mode Guidance
 
@@ -62,7 +62,7 @@ Make the dashboard better.
 ### Strong Prompt
 
 ```text
-Using @workspace, propose a small improvement to the clinic dashboard in this repo. Keep it to one frontend change, do not change backend contracts, reuse current naming and styling patterns, and explain which files would need to change.
+Using #codebase, propose a small improvement to the clinic dashboard in this repo. Keep it to one frontend change, do not change backend contracts, reuse current naming and styling patterns, and explain which files would need to change.
 ```
 
 ### Checkpoint
@@ -78,14 +78,14 @@ Use open tabs and explicit references to improve Copilot's reasoning.
 ### Steps
 
 1. keep `backend/src/main/java/com/workshop/petcareops/dashboard/ClinicDashboardService.java`, `frontend/src/App.tsx`, `frontend/src/types.ts`, and `.github/copilot-instructions.md` open
-2. ask the prompt below with `@workspace`
+2. ask the prompt below with `#codebase`
 3. if the answer is still generic, add a `#file:` reference to one of the open files
 4. note how the answer changes when the context is more directed
 
 ### Prompt
 
 ```text
-Using @workspace, compare the backend dashboard response shape with the frontend view that renders it. Identify one place where tighter naming or typing would make future Copilot edits safer.
+Using #codebase, compare the backend dashboard response shape with the frontend view that renders it. Identify one place where tighter naming or typing would make future Copilot edits safer.
 ```
 
 ### Checkpoint
@@ -144,9 +144,9 @@ Follow the naming and response patterns already used in this repo. Using the exi
 
 ```text
 Let's think through this step by step for the dashboard flow in this repo:
-1. identify the current inputs and outputs
-2. identify one missing edge case or usability gap
-3. propose the smallest safe change
+1. trace what actually happens today when a follow-up item has no assigned clinician
+2. decide whether that is a bug or an expected gap, and explain why
+3. propose the smallest safe fix
 4. list the files that would need to change
 ```
 
@@ -156,7 +156,7 @@ The response should be more structured and easier to act on than a vague one-sho
 
 ## Quick Reference
 
-- `@workspace`: ask codebase-aware questions
+- `#codebase`: ask codebase-aware questions
 - `#file:path`: point at one file directly
 - `/explain`: understand a selected block
 - `/fix`: ask for a targeted fix
