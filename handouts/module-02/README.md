@@ -13,15 +13,15 @@ The goal is to leave with a more advanced feeling of control over Copilot output
 
 ## IDE Notes
 
-- VS Code: use Chat for the prompt and context comparisons, then switch to Agent when you want Copilot to rewrite the instructions file.
-- IntelliJ: keep the same files open and use Copilot Chat for the comparison steps; if `#codebase` or Agent surfaces differ in your plugin version, use explicit file references and follow the trainer for the exact UI.
+- VS Code: use Ask for the prompt and context comparisons, then switch to Agent when you want Copilot to rewrite the instructions file.
+- IntelliJ: keep the same files open and use Copilot Ask for the comparison steps; if `#codebase` or Agent surfaces differ in your plugin version, use explicit file references and follow the trainer for the exact UI.
 
 ## Mode Guidance
 
-- exercise 1: Chat
-- exercise 2: Chat
+- exercise 1: Ask
+- exercise 2: Ask
 - exercise 3: Agent
-- exercise 4: Chat or Agent depending on whether you want only analysis or a concrete rewrite
+- exercise 4: Ask or Agent depending on whether you want only analysis or a concrete rewrite
 
 ## Before You Start
 
@@ -103,7 +103,7 @@ Improve the repo-wide instructions so the next Copilot response better matches t
 1. review `.github/copilot-instructions.md`
 2. open `workshop-assets/solution/copilot-instructions.module-02.md` as the stronger comparison file
 3. ask Copilot to suggest 5-8 tighter rules for this repo
-4. if you switch from Chat to Agent for editing, repeat the rewrite prompt in full instead of saying "apply that"
+4. if you switch from Ask to Agent for editing, repeat the rewrite prompt in full instead of saying "apply that"
 5. compare your result with `workshop-assets/solution/copilot-instructions.module-02.md`
 
 ### Files For This Exercise
@@ -131,7 +131,7 @@ Practice one advanced prompting technique that can be reused daily.
 
 1. choose one of the prompts below
 2. run it against the dashboard slice
-3. if you switch from Chat to Agent, paste the chosen prompt again as a fresh Agent prompt
+3. if you switch from Ask to Agent, paste the chosen prompt again as a fresh Agent prompt
 4. compare the result with a simpler one-shot request
 
 ### Few-Shot Prompt
