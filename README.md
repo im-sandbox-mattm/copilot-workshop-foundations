@@ -2,9 +2,11 @@
 
 This repo is the exercise baseline for workshop modules 1-6.
 
-## Purpose
+Module handouts live under `handouts/` so you can use one repo for both instructions and exercise assets.
 
-This is a compact, production-style training application designed to support:
+## What This Repo Is For
+
+This is a compact, production-style training application used throughout the workshop to practice:
 
 - prompting and context exercises
 - test generation
@@ -33,11 +35,11 @@ Core workflow:
 3. clinicians capture visit notes and treatment recommendations
 4. the frontend shows appointment history, current visit state, and follow-up actions
 
-The code should feel like a trimmed internal product, not a toy demo.
+The code is small enough to explore quickly, but it is still meant to feel like a realistic application rather than a toy example.
 
 ## Domain Model
 
-Planned entities for the initial baseline:
+Main entities in the baseline:
 
 - `Customer`: primary contact details and preferred communication channel
 - `Pet`: species, breed, age, owner relationship, care flags
@@ -45,13 +47,12 @@ Planned entities for the initial baseline:
 - `Clinician`: name, specialty, availability snapshot
 - `VisitNote`: summary, treatment plan, medication or follow-up instructions
 
-## Design Principles
+## How To Use This Repo
 
-- realistic enough to feel like normal product code
-- small enough to explain quickly in a live workshop
-- prepared with reset points per module
-- seeded with intentionally weak Copilot context that improves across modules
-- balanced backend and frontend surfaces so Chat and Agent demos can cross the stack
+- use the handout for the module you are currently in
+- create a fresh branch from the recommended reset tag for each code-changing module
+- keep the repo focused on the current exercise instead of trying to explore every asset at once
+- use the backend and frontend files named in the handout as your primary working set
 
 ## Repo Shape
 
@@ -60,12 +61,15 @@ Current baseline structure:
 ```text
 copilot-workshop-foundations/
 	backend/
-		src/main/java/... 
+		src/main/java/...
 		src/test/java/...
 		pom.xml
 	frontend/
 		src/
 		package.json
+	handouts/
+		module-01/
+		...
 	.github/
 		copilot-instructions.md
 		instructions/
@@ -81,70 +85,53 @@ copilot-workshop-foundations/
 The first real workflow is a clinic dashboard view:
 
 - backend endpoint: `GET /api/dashboard`
-- seeded in-memory data for customers, pets, clinicians, and appointments
+- in-memory data for customers, pets, clinicians, and appointments
 - frontend dashboard that fetches and renders the daily appointment board
-- starter `.github/copilot-instructions.md` plus a stronger module-2 variant in `workshop-assets/solution/`
+- starter `.github/copilot-instructions.md` plus additional comparison assets used in later modules
 
-This is deliberately small, but it is real code and a real API/UI flow.
+This is a small but complete API and UI flow, which makes it a good baseline for the later exercises.
 
-## Module Slices
+## Module Overview
 
-The same repo should support different exercise slices without forcing one long dependency chain.
+Each module uses a different slice of the same repo. You do not need to understand the whole codebase before you start.
 
-| Module | Primary surface | Planned exercise shape |
+| Module | Primary surface | Core focus |
 | --- | --- | --- |
-| 1. Beyond Autocomplete | backend + frontend + minimal `.github` context | show Ask vs Agent, `@workspace`, and a before/after instructions demo |
-| 2. Context Engineering | `.github/copilot-instructions.md`, prompt assets, a few representative files | improve prompts, open-tab context, and instruction quality |
-| 3. Legacy Modernization | isolated modernization branch or slice | narrow migration or upgrade task with clear reset |
-| 4.1 Testing | service layer plus one frontend component | generate missing tests and improve coverage |
-| 4.2 Refactoring | intentionally messy reminder drafting service | plan-first refactoring with checkpoints |
-| 5. Secure Coding | one backend flaw and one frontend flaw | use `/fix`, review prompts, and secure comment patterns |
-| 6.1 PR Review | prepared diff or branch | review AI-generated and human-generated changes |
-| 6.2 Token Optimization | instruction and prompt assets | reduce noise, tighten scope, and compare results |
+| 1. Beyond Autocomplete | backend + frontend + minimal `.github` context | explore Ask vs Agent, `@workspace`, and basic instruction impact |
+| 2. Context Engineering | `.github/copilot-instructions.md`, prompt assets, and representative files | improve prompts, file context, and instruction quality |
+| 3. Legacy Modernization | backend modernization lab plus optional React asset | modernize a focused slice with validation |
+| 4.1 Testing | service layer plus existing tests | generate missing tests and improve coverage |
+| 4.2 Refactoring | follow-up reminder service | use analysis-first, narrow refactoring steps |
+| 5. Secure Coding | frontend preview flow and backend template preview flow | identify and fix common security issues |
+| 6.1 PR Review | review branch plus reusable review prompt | review changes, apply fixes, and add regression tests |
+| 6.2 Token Optimization | verbose starter instructions plus optimized assets | reduce noise, tighten scope, and compare results |
 
-## Staged Copilot Assets
+## What You Will Find In The Repo
 
-Start intentionally thin:
+- a small starter `.github/copilot-instructions.md`
+- module handouts under `handouts/`
+- starter and comparison assets under `workshop-assets/`
+- backend and frontend code slices used by different modules
 
-- minimal `copilot-instructions.md`
-- no path-specific instructions yet
-- generic prompt examples only
+## Attendee Setup
 
-Then improve across modules:
+For most modules, you do not need to run the application locally.
 
-- stronger repository instructions in module 2
-- testing-specific prompt patterns in module 4.1
-- security-focused constraints in module 5
-- token-optimized instruction set in module 6.2
+Recommended setup for everyone:
 
-## Delivery Milestones
+- Git
+- a Copilot-enabled IDE such as VS Code or IntelliJ
+- access to GitHub Copilot Chat
+- the ability to clone the repo and run `git fetch --all --tags`
 
-### Milestone 1
+Optional local runtime setup if you want to run checks yourself:
 
-Repo definition and workshop mapping:
+- JDK 21
+- Node 20+ with npm
 
-- business story
-- domain entities
-- repo layout
-- module-to-surface mapping
+The repo already includes the Maven wrapper and frontend package scripts, so you do not need a global Maven install or extra React tooling.
 
-### Milestone 2
-
-Executable baseline:
-
-- Spring Boot backend scaffold
-- React frontend scaffold
-- one complete dashboard and appointment flow
-- one intentionally weak instructions file
-
-### Milestone 3
-
-Workshop-ready slices:
-
-- missing-test slice
-- messy-service slice
-- seeded security flaws
-- reset tags or branches per module
+Modules 03, 04.1, and 04.2 benefit the most from local backend test execution. The other modules can still be followed effectively even if you do not run the code yourself.
 
 ## Running The Baseline
 
@@ -152,8 +139,8 @@ Backend:
 
 ```bash
 cd backend
-export JAVA_HOME="$(brew --prefix openjdk@21)/libexec/openjdk.jdk/Contents/Home"
-export PATH="$JAVA_HOME/bin:$PATH"
+# macOS/Linux: point JAVA_HOME at a JDK 21 install if it is not already set
+# Windows PowerShell: use .\mvnw.cmd instead of ./mvnw
 ./mvnw spring-boot:run
 ```
 
@@ -167,11 +154,13 @@ npm run dev
 
 The frontend expects the backend at `http://localhost:8080` and runs on `http://localhost:5173` by default.
 
-## Immediate Next Build Step
+## Working Through The Modules
 
-1. replace the in-memory dashboard service with a slightly messier service layer for testing and refactoring modules
-2. seed reset points and stronger `.github` assets for module 2 and later
+1. open the handout for your current module under `handouts/`
+2. create the branch or reset point named in that handout
+3. open the files listed in the handout before starting the prompts
+4. stay focused on the current module rather than trying to work ahead across multiple slices
 
 ## Status
 
-Executable project scaffolding is in place. The next milestone is adding module-specific slices on top of the current dashboard flow.
+This repo is ready to use for the workshop modules covered in the handouts.

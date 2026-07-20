@@ -42,4 +42,5 @@ export interface DashboardOverview {
   shiftSummary: string
   appointments: AppointmentSummary[]
   clinicianLoad: ClinicianLoad[]
+  appointmentsRequiringFollowUp: number
 }
