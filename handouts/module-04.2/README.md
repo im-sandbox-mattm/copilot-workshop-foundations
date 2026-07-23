@@ -13,12 +13,12 @@ The goal is not to teach refactoring theory. The goal is to make Copilot feel li
 
 ## IDE Notes
 
-- VS Code: use Chat or Plan for the initial smell analysis, then switch to Agent quickly for the actual refactoring and test steps; when you switch, paste the next refactoring or test prompt again as a fresh Agent prompt.
-- IntelliJ: use Copilot Chat for the smell analysis; if Plan or Agent controls differ in your plugin version, keep the same prompt flow and follow the trainer for the exact edit/apply path.
+- VS Code: use Ask or Plan for the initial smell analysis, then switch to Agent quickly for the actual refactoring and test steps; when you switch, paste the next refactoring or test prompt again as a fresh Agent prompt.
+- IntelliJ: use Copilot Ask for the smell analysis; if Plan or Agent controls differ in your plugin version, keep the same prompt flow and follow the trainer for the exact edit/apply path.
 
 ## Mode Guidance
 
-- exercise 1: Chat or Plan
+- exercise 1: Ask or Plan
 - exercise 2: Agent
 - exercise 3: Agent
 - exercise 4: Agent
@@ -71,7 +71,7 @@ Apply one small refactoring with clear constraints instead of asking for a broad
 ### Steps
 
 1. choose the single highest-value issue from the analysis
-2. if you switch from Chat or Plan into Agent here, paste the prompt below again as a fresh Agent prompt
+2. if you switch from Ask or Plan into Agent here, paste the prompt below again as a fresh Agent prompt
 3. ask Copilot to preserve behavior and keep the public API unchanged
 4. review the plan before accepting the code changes
 5. stop after one narrow pass
