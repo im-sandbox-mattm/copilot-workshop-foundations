@@ -146,6 +146,10 @@ Constraints:
 
 You should end with a narrower, cleaner service and tests that prove key paths still behave the same way.
 
+## Stretch
+
+.github/instructions/refactoring.instructions.md encoding "preserve public signatures, one smell per pass," or draft a minimal skill definition for the PREPARE → IDENTIFY → REFACTOR → VERIFY loop and run it against OwnerReminderDraftService
+
 ## If You Get Stuck
 
 - ask Copilot for the smell analysis only, not the code change yet
