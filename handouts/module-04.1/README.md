@@ -23,8 +23,8 @@ The goal is not to teach testing theory. The goal is to make Copilot feel like a
 - exercise 3: Agent
 - exercise 4: Ask first, then Agent only if you want Copilot to apply more test changes
 
-### When to Plan First vs. Go Straight to Agent"
-*Single-file, narrow-scope tasks bundle plan-then-apply into one Agent prompt below. Multi-file or ambiguous-scope tasks should stay in Plan mode until the full sequence is approved, then switch to Agent to execute.
+### When to Plan First vs. Go Straight to Agent
+*Single-file, narrow-scope tasks bundle plan-then-apply into one Agent prompt below. Multi-file or ambiguous-scope tasks should stay in Plan mode until the full sequence is approved, then switch to Agent to execute.*
 
 ## Before You Start
 
