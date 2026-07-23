@@ -51,3 +51,13 @@ if [[ -z "$STAGED_TEST_FILES" ]]; then
 fi
 
 echo '{"hookSpecificOutput": {"hookEventName": "PreToolUse", "permissionDecision": "allow"}}'
+
+# Note: this file does not need to be committed for VS Code to discover and
+# run it -- hooks are read from disk on every call regardless of git tracking
+# status. It should still be committed (and was, after being caught
+# reverting silently between sessions while untracked): an untracked prompt
+# or skill file reverting just means it silently isn't used, but an
+# untracked enforcement hook reverting fails open -- the exact commit it's
+# meant to block sails through with no error. Commit hooks early because the
+# blast radius of losing them is worse, not because they wouldn't run
+# otherwise.
