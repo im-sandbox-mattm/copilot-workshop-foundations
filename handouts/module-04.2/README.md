@@ -13,18 +13,22 @@ The goal is not to teach refactoring theory. The goal is to make Copilot feel li
 
 ## IDE Notes
 
-- VS Code: use Ask or Plan for the initial smell analysis, then switch to Agent quickly for the actual refactoring and test steps; when you switch, paste the next refactoring or test prompt again as a fresh Agent prompt.
-- IntelliJ: use Copilot Ask for the smell analysis; if Plan or Agent controls differ in your plugin version, keep the same prompt flow and follow the trainer for the exact edit/apply path.
+- VS Code: use Plan for the initial smell analysis, then switch to Agent quickly for the actual refactoring and test steps; when you switch, paste the next refactoring or test prompt again as a fresh Agent prompt.
+- IntelliJ: use Copilot Ask for the smell analysis if Plan mode isn't available in your plugin version; otherwise use Plan. Follow the trainer for the exact edit/apply path.
 
 ## Mode Guidance
 
-- exercise 1: Ask or Plan
+- exercise 1: Plan (VS Code) / Ask (IntelliJ, if Plan mode isn't available in your plugin version)
 - exercise 2: Agent
 - exercise 3: Agent
 - exercise 4: Agent
 
 ### When to Plan First vs. Go Straight to Agent
-*Single-file, narrow-scope tasks bundle plan-then-apply into one Agent prompt below. Multi-file or ambiguous-scope tasks should stay in Plan mode until the full sequence is approved, then switch to Agent to execute.*
+- Single-file, narrow-scope tasks bundle plan-then-apply into one Agent prompt below. Multi-file or ambiguous-scope tasks should stay in Plan mode until the full sequence is approved, then switch to Agent to execute.
+
+### A note on language
+- "Plan" shows up two ways here. Sometimes it means the IDE's literal Plan mode — a separate mode that produces a plan you approve before anything runs. Other times, especially inside a prompt ("show the plan first, then apply") or in casual phrasing, it just means asking Copilot to lay out its intent before acting, which can happen inside Ask or Agent without ever switching modes.
+- Exercise 1 below is the one place in this workshop series so far that actually calls for literal Plan mode — the smell analysis is exactly the "produce a plan, get it approved, then execute" shape the mode is built for. Every exercise after that stays narrow enough to bundle plan-then-apply into a single Agent prompt instead.
 
 ## Before You Start
 
@@ -49,6 +53,8 @@ Use a persona prompt to get a concrete refactoring plan instead of vague cleanup
 2. ask Copilot for a prioritized smell analysis
 3. review whether the response names concrete issues in this file
 4. do not refactor yet; first decide which issue is the best low-risk target
+
+*Multi-step and evaluative — this is the one exercise that calls for literal Plan mode.*
 
 ### Prompt
 
@@ -79,6 +85,8 @@ Apply one small refactoring with clear constraints instead of asking for a broad
 4. review the plan before accepting the code changes
 5. stop after one narrow pass
 
+*Single file, one issue selected from Exercise 1 — plan-then-apply bundled here.*
+
 ### Prompt
 
 ```text
@@ -105,6 +113,8 @@ Practice a multi-turn refactoring conversation instead of treating the first ans
 4. compare the second change with the first one
 5. stop if Copilot starts broadening the scope again
 
+*Still single file, still one change — same reasoning as Exercise 2.*
+
 ### Prompt
 
 ```text
@@ -130,6 +140,8 @@ Use Copilot to create a safety net for the refactored code.
 3. review whether the assertions are specific enough to prove behavior
 4. run the backend tests if time allows
 5. keep the generated tests compact and behavior-focused
+
+*Test generation only, not a code change — narrow enough to skip a separate plan step.*
 
 ### Prompt
 
