@@ -79,6 +79,8 @@ Apply one small refactoring with clear constraints instead of asking for a broad
 4. review the plan before accepting the code changes
 5. stop after one narrow pass
 
+*Using the target issue you selected from Exercise 1's analysis, show the implementation plan for that one change, then apply it.*
+
 ### Prompt
 
 ```text
