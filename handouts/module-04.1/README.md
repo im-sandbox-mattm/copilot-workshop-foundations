@@ -23,6 +23,9 @@ The goal is not to teach testing theory. The goal is to make Copilot feel like a
 - exercise 3: Agent
 - exercise 4: Ask first, then Agent only if you want Copilot to apply more test changes
 
+### When to Plan First vs. Go Straight to Agent"
+*Single-file, narrow-scope tasks bundle plan-then-apply into one Agent prompt below. Multi-file or ambiguous-scope tasks should stay in Plan mode until the full sequence is approved, then switch to Agent to execute.
+
 ## Before You Start
 
 - open the `copilot-workshop-foundations` repo
@@ -89,6 +92,8 @@ Use Copilot to identify what the current test file still misses.
 2. if you switch into Agent for this step, paste the prompt below again as a fresh Agent prompt
 3. review the uncovered paths Copilot identifies
 4. generate only 1-2 missing tests, not a huge rewrite
+
+*Since the scope is a single file with a known test class, go straight to Agent Mode*
 
 ### Prompt
 
