@@ -24,7 +24,10 @@ The goal is not to teach testing theory. The goal is to make Copilot feel like a
 - exercise 4: Ask first, then Agent only if you want Copilot to apply more test changes
 
 ### When to Plan First vs. Go Straight to Agent
-*Single-file, narrow-scope tasks bundle plan-then-apply into one Agent prompt below. Multi-file or ambiguous-scope tasks should stay in Plan mode until the full sequence is approved, then switch to Agent to execute.*
+- Single-file, narrow-scope tasks bundle plan-then-apply into one Agent prompt below. Multi-file or ambiguous-scope tasks should stay in Plan mode until the full sequence is approved, then switch to Agent to execute.
+
+### A note on language
+- "Plan" shows up two ways here. Sometimes it means the IDE's literal Plan mode — a separate mode that produces a plan you approve before anything runs. Other times, especially inside a prompt ("show the plan first, then apply") or in casual phrasing, it just means asking Copilot to lay out its intent before acting, which can happen inside Ask or Agent without ever switching modes. Every exercise in this module stays narrow enough that literal Plan mode is never required — that changes in the refactoring module.
 
 ## Before You Start
 
@@ -120,6 +123,8 @@ Improve generated tests through follow-up prompts instead of starting over.
 3. if you open a new Agent run for the refinement, paste the refinement prompt again in full
 4. focus on one refinement at a time: null handling, boundary conditions, or collaborator verification
 
+*Single file, one refinement at a time — no separate plan needed.*
+
 ### Prompt
 
 ```text
@@ -144,6 +149,8 @@ Build the habit of reviewing AI-generated tests before treating them as useful c
 2. check whether collaborator interactions are verified only when relevant
 3. if you move from Ask review into Agent to apply one more change, paste that follow-up prompt again as a fresh Agent prompt
 4. run the tests if time allows
+
+*Review stays in Ask; only switch to Agent if you're applying a change, and even then it's one small edit.*
 
 ### Prompt
 
