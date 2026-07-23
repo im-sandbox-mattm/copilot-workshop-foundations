@@ -23,7 +23,7 @@ The goal is not to teach refactoring theory. The goal is to make Copilot feel li
 - exercise 3: Agent
 - exercise 4: Agent
 
-### When to Plan First vs. Go Straight to Agent"
+### When to Plan First vs. Go Straight to Agent
 *Single-file, narrow-scope tasks bundle plan-then-apply into one Agent prompt below. Multi-file or ambiguous-scope tasks should stay in Plan mode until the full sequence is approved, then switch to Agent to execute.*
 
 ## Before You Start
@@ -78,8 +78,6 @@ Apply one small refactoring with clear constraints instead of asking for a broad
 3. ask Copilot to preserve behavior and keep the public API unchanged
 4. review the plan before accepting the code changes
 5. stop after one narrow pass
-
-*Using the target issue you selected from Exercise 1's analysis, show the implementation plan for that one change, then apply it.*
 
 ### Prompt
 
