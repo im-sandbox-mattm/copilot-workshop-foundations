@@ -79,8 +79,6 @@ Apply one small refactoring with clear constraints instead of asking for a broad
 4. review the plan before accepting the code changes
 5. stop after one narrow pass
 
-*Since the scope is a single file with a known test class, go straight to Agent Mode*
-
 ### Prompt
 
 ```text
