@@ -155,7 +155,7 @@ You should end with a smaller set of stronger tests, not just a larger file.
 
 - ask Agent mode to add the tests and run them
 - if your IDE supports it, let Agent fix a small failing test and rerun
-- take your SPEC prompt from Exercise 1 and save it as .github/prompts/generate-unit-tests.prompt.md. Then fix copilot-instructions.md — add the testing standards this workshop just covered (assertion style, mocking rules, never weaken a failing test)
+- take your structured prompt from Exercise 1 and save it as .github/prompts/generate-unit-tests.prompt.md. Then fix copilot-instructions.md — add the testing standards this workshop just covered (assertion style, mocking rules, never weaken a failing test)
 
 ## If You Get Stuck
 
