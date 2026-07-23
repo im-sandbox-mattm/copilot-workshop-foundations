@@ -13,15 +13,15 @@ The goal is not to teach testing theory. The goal is to make Copilot feel like a
 
 ## IDE Notes
 
-- VS Code: use Chat for the prompt comparison, then switch to Agent quickly once you want Copilot to add or refine tests; when you switch, paste the next testing prompt again as a fresh Agent prompt.
-- IntelliJ: use Copilot Chat for the same prompt flow; if Agent mode differs in your plugin version, keep the analysis in Chat and follow the trainer for the exact apply flow.
+- VS Code: use Ask for the prompt comparison, then switch to Agent quickly once you want Copilot to add or refine tests; when you switch, paste the next testing prompt again as a fresh Agent prompt.
+- IntelliJ: use Copilot Ask for the same prompt flow; if Agent mode differs in your plugin version, keep the analysis in Ask and follow the trainer for the exact apply flow.
 
 ## Mode Guidance
 
-- exercise 1: Chat
+- exercise 1: Ask
 - exercise 2: Agent
 - exercise 3: Agent
-- exercise 4: Chat first, then Agent only if you want Copilot to apply more test changes
+- exercise 4: Ask first, then Agent only if you want Copilot to apply more test changes
 
 ## Before You Start
 
@@ -33,7 +33,7 @@ The goal is not to teach testing theory. The goal is to make Copilot feel like a
   - `.github/copilot-instructions.md`
 - if you run tests locally, use the backend Maven wrapper from the `backend/` folder
 
-## Exercise 1: Use A SPEC Prompt
+## Exercise 1: Use A Structured Prompt
 
 ### Goal
 
@@ -42,7 +42,7 @@ See how a structured testing prompt produces better output than a vague request.
 ### Steps
 
 1. start with a vague request and inspect the result
-2. rerun with the SPEC-style prompt below
+2. rerun with the structured prompt below
 3. compare the generated test names, assertions, and mocking behavior
 
 ### Vague Prompt
@@ -51,7 +51,7 @@ See how a structured testing prompt produces better output than a vague request.
 Write tests for FollowUpRecommendationService.
 ```
 
-### SPEC Prompt
+### Structured Prompt
 
 ```text
 You are a Test Strategy Agent.
@@ -75,7 +75,7 @@ Constraints:
 
 ### Checkpoint
 
-The SPEC prompt should produce more targeted tests and better mocking than the vague prompt.
+The structured prompt should produce more targeted tests and better mocking than the vague prompt.
 
 ## Exercise 2: Coverage Optimizer Pattern
 
@@ -137,7 +137,7 @@ Build the habit of reviewing AI-generated tests before treating them as useful c
 
 1. inspect whether the tests assert meaningful values
 2. check whether collaborator interactions are verified only when relevant
-3. if you move from Chat review into Agent to apply one more change, paste that follow-up prompt again as a fresh Agent prompt
+3. if you move from Ask review into Agent to apply one more change, paste that follow-up prompt again as a fresh Agent prompt
 4. run the tests if time allows
 
 ### Prompt
@@ -155,6 +155,7 @@ You should end with a smaller set of stronger tests, not just a larger file.
 
 - ask Agent mode to add the tests and run them
 - if your IDE supports it, let Agent fix a small failing test and rerun
+- take your SPEC prompt from Exercise 1 and save it as .github/prompts/generate-unit-tests.prompt.md. Then fix copilot-instructions.md — add the testing standards this workshop just covered (assertion style, mocking rules, never weaken a failing test)
 
 ## If You Get Stuck
 
