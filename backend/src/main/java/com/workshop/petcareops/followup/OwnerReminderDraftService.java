@@ -36,19 +36,17 @@ public class OwnerReminderDraftService {
 
         if (urgent) {
             urgencyLabel = "Urgent";
+            deliveryChannel = resolveDeliveryChannel(normalizedChannel);
 
-            if (normalizedChannel.equals("sms") || normalizedChannel.equals("text")) {
-                deliveryChannel = "SMS";
+            if (deliveryChannel.equals("SMS")) {
                 messageBody.append("Please contact the clinic as soon as possible about ")
                         .append(appointment.pet().name())
                         .append(". ");
-            } else if (normalizedChannel.equals("email")) {
-                deliveryChannel = "Email";
+            } else if (deliveryChannel.equals("Email")) {
                 messageBody.append("Important update for ")
                         .append(appointment.pet().name())
                         .append(": please contact the clinic today. ");
             } else {
-                deliveryChannel = "Phone";
                 messageBody.append("Call the owner about ")
                         .append(appointment.pet().name())
                         .append(" before the current shift ends. ");
@@ -65,18 +63,17 @@ public class OwnerReminderDraftService {
         } else {
             if (appointment.followUpRequired()) {
                 urgencyLabel = "Routine follow-up";
-                if (normalizedChannel.equals("email")) {
-                    deliveryChannel = "Email";
+                deliveryChannel = resolveDeliveryChannel(normalizedChannel);
+
+                if (deliveryChannel.equals("Email")) {
                     messageBody.append("Send the owner a follow-up summary for ")
                             .append(appointment.pet().name())
                             .append(" and offer the next available slot. ");
-                } else if (normalizedChannel.equals("sms") || normalizedChannel.equals("text")) {
-                    deliveryChannel = "SMS";
+                } else if (deliveryChannel.equals("SMS")) {
                     messageBody.append("Text the owner a short follow-up reminder for ")
                             .append(appointment.pet().name())
                             .append(". ");
                 } else {
-                    deliveryChannel = "Phone";
                     messageBody.append("Queue a follow-up call for ")
                             .append(appointment.pet().name())
                             .append(" within the next day. ");
@@ -120,5 +117,15 @@ public class OwnerReminderDraftService {
                 messageBody.toString().trim(),
                 internalEscalation
         );
+    }
+
+    private String resolveDeliveryChannel(String normalizedChannel) {
+        if (normalizedChannel.equals("sms") || normalizedChannel.equals("text")) {
+            return "SMS";
+        }
+        if (normalizedChannel.equals("email")) {
+            return "Email";
+        }
+        return "Phone";
     }
 }
