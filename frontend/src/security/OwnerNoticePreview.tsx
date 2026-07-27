@@ -4,13 +4,6 @@ function OwnerNoticePreview() {
   const [ownerName, setOwnerName] = useState('Maya Patel')
   const [customNote, setCustomNote] = useState('Bring the current medication list to check-in.')
 
-  const htmlPreview = `
-    <section>
-      <h3>Reminder for ${ownerName}</h3>
-      <p>${customNote}</p>
-    </section>
-  `
-
   return (
     <section className="preview-panel" aria-label="Owner notice preview">
       <div className="preview-panel__content">
@@ -39,7 +32,10 @@ function OwnerNoticePreview() {
 
       <div className="preview-panel__preview">
         <p className="preview-panel__label">Rendered preview</p>
-        <div dangerouslySetInnerHTML={{ __html: htmlPreview }} />
+        <section>
+          <h3>Reminder for {ownerName}</h3>
+          <p>{customNote}</p>
+        </section>
       </div>
     </section>
   )
