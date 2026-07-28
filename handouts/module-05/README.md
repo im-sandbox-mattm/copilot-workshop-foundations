@@ -102,7 +102,7 @@ Do not read ahead into later exercises before you reach them; several depend on 
 Confirm the following before the workshop:
 
 - Git 2.23 or later
-- Java 21
+- Java 21 or later (the backend builds and runs on any JDK 21+; the project targets Java 21 bytecode via Maven, so newer LTS and non-LTS JDKs — 21 through 25 have been verified — work without any changes)
 - Node.js 20.19+, 22.13+, or 24.x
 - npm supplied with the supported Node.js installation
 - a current GitHub Copilot extension, an authenticated Copilot license, and access to Ask and Agent mode
@@ -134,7 +134,7 @@ cd backend
 cd ..
 ```
 
-Check the "Java version" line the Wrapper reports. This catches the common case where `java --version` shows Java 21 but `JAVA_HOME` causes Maven to use an older JDK.
+Check the "Java version" line the Wrapper reports. This catches the common case where `java --version` shows a supported Java version but `JAVA_HOME` causes Maven to use an older, unsupported JDK.
 
 ### Network Requirement
 
