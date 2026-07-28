@@ -1,0 +1,24 @@
+<!--
+  Lab fixture for Module 05, Exercise 2.
+
+  This file lives outside the approved `workshop-assets/message-templates/`
+  directory but still uses an approved `.html` extension.
+
+  It exists so that a containment test cannot pass merely because a
+  traversal payload is rejected by an extension allowlist. A payload such as
+  `../outside/unauthorized-template.html` has the correct extension, so the
+  only control that can legitimately reject it is verified directory
+  containment, not extension filtering.
+
+  Do not treat this file as a real message template.
+-->
+<section>
+  <h3>Unauthorized template</h3>
+  <p>
+    UNAUTHORIZED_TEMPLATE_SENTINEL
+  </p>
+  <p>
+    If your endpoint returns this content, containment has not been
+    established: this file is outside the approved template directory.
+  </p>
+</section>
