@@ -508,10 +508,7 @@ Before opening the Ask session, capture what actually changed. Your generated te
 ```bash
 git status --short
 
-git diff -- \
-  frontend/src/security/OwnerNoticePreview.tsx \
-  backend/src/main/java/com/workshop/petcareops/security/TemplatePreviewController.java \
-  > module-05-remediation.diff
+git diff HEAD -- frontend/src/security/OwnerNoticePreview.tsx backend/src/main/java/com/workshop/petcareops/security/TemplatePreviewController.java > module-05-remediation.diff
 ```
 
 Copilot cannot reliably tell what the remediation changed from the current files alone. In a new **Ask** session, attach the two implementation files, the generated `TemplatePreviewControllerTest.java` file directly, and `module-05-remediation.diff`, then submit:
