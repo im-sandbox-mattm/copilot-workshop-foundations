@@ -8,7 +8,7 @@
 - distinguishing a cosmetic fix from a structural remediation, and a test that proves containment from one that merely rejects a single payload
 - using Copilot Chat as a security reviewer that must cite evidence, not adjectives
 - authoring scoped instruction files from the failures you actually observed, and testing whether they influence output
-- comparing manual review, Copilot review, and `/security-review` (or its fallback) as complementary layers
+- comparing manual review, Copilot Ask review, and—where available—`/security-review` as complementary layers
 - threat-modeling an agent/tool integration using the Lethal Trifecta and OWASP ASI categories, without connecting a live MCP server
 
 ## Module Focus
@@ -72,7 +72,12 @@ Do not ask Copilot to inspect, rewrite, or refactor unrelated parts of the repos
 
 ## Before You Start
 
-Open the `copilot-workshop-foundations` repository.
+Open the `copilot-workshop-foundations` repository. If you don't already have a clone:
+
+```bash
+git clone https://github.com/im-sandbox-mattm/copilot-workshop-foundations.git
+cd copilot-workshop-foundations
+```
 
 Fetch the Module 05 starter tag and create your own working branch from it:
 
@@ -98,7 +103,7 @@ Confirm the following before the workshop:
 
 - Git 2.23 or later
 - Java 21
-- Node.js 20.19+, 22.13+, or 24+
+- Node.js 20.19+, 22.13+, or 24.x
 - npm supplied with the supported Node.js installation
 - a current GitHub Copilot extension, an authenticated Copilot license, and access to Ask and Agent mode
 
@@ -169,7 +174,7 @@ The first Maven Wrapper run may take longer while it downloads Maven and project
 
 ### Start Both Applications
 
-Do this now, before the lab clock starts. Both applications need to stay running for the rest of the lab.
+Do this now, before the lab clock starts.
 
 The frontend must run on port 5173 and the backend on port 8080. The backend's CORS configuration permits only `http://localhost:5173`; if port 5173 is already in use, Vite may silently fall back to 5174, the dashboard will fail to load, and the vulnerable preview component will never render. If either port is unavailable, stop the process using it before continuing — do not accept Vite's fallback port.
 
@@ -213,7 +218,9 @@ Invoke-RestMethod http://localhost:8080/api/dashboard
 
 You should see JSON, not a connection error. Then confirm the frontend dashboard loads in the browser at `http://localhost:5173`.
 
-The backend does not include Spring Boot DevTools, so it does not hot-reload. Once Exercise 2 changes the controller, the already-running backend process keeps executing the original code until you restart it. `./mvnw test` is the required verification for Exercise 2 and remains sound regardless; if you also want to exercise the endpoint manually over HTTP afterward, stop and restart the backend first.
+### Server Lifecycle For The Rest Of The Lab
+
+Keep both applications running through Exercise 1. Once your frontend remediation is verified, you may stop both — Exercise 2 uses `./mvnw test` as its required verification, so the backend does not need to stay running for it. The backend also does not include Spring Boot DevTools, so it does not hot-reload: after Exercise 2 changes the controller, an already-running backend process keeps executing the original code until restarted. Restart the backend only if you also want to exercise the modified endpoint manually over HTTP — and note that leaving it running on port 8080 during Exercise 2 risks a conflict if Copilot's generated tests try to start a real server on the same port.
 
 ---
 
@@ -283,7 +290,7 @@ npm run build
 cd ..
 ```
 
-Then refresh the browser and repeat the same payload. It should render as literal text with no alert. If it still executes, hard-refresh the browser; if that does not resolve it, restart the dev server (`Ctrl+C`, then `npm run dev` again in Terminal 2).
+Then refresh the browser and repeat the same payload. It should render as literal text with no alert. If it still executes, hard-refresh the browser; if that does not resolve it, restart the dev server (`Ctrl+C`, then `npm run dev -- --port 5173 --strictPort` again in Terminal 2).
 
 ---
 
@@ -442,6 +449,20 @@ Everything you enforced by hand in Lab 1 — the containment check, the generic 
 
 ### Your Task
 
+Create the instructions directory if it doesn't already exist:
+
+**macOS/Linux**
+
+```bash
+mkdir -p .github/instructions
+```
+
+**PowerShell**
+
+```powershell
+New-Item -ItemType Directory -Force .github/instructions
+```
+
 Create `.github/instructions/backend-security.instructions.md` (and optionally a frontend equivalent) yourself. Derive 3–5 rules directly from what you personally observed failing or succeeding in Lab 1 — do not start from a supplied ruleset.
 
 Before writing the file, decide:
@@ -462,7 +483,7 @@ applyTo: "<choose the narrowest applicable glob>"
 <!-- Derive 3-5 rules from Lab 1 -->
 ```
 
-**IDE compatibility:** This comparison is written for VS Code. Path-specific instruction activation can vary by IDE and by your installed Copilot plugin version — if `.github/instructions/*.instructions.md` does not appear to activate in your environment, fall back to a temporary repository-wide `.github/copilot-instructions.md` file for the guidance-versus-enforcement comparison, and note that this fallback does not test path-specific activation.
+**IDE compatibility:** This comparison is written for VS Code. Path-specific instruction activation can vary by IDE and by your installed Copilot plugin version — if `.github/instructions/*.instructions.md` does not appear to activate in your environment, temporarily append your 3–5 rules to the existing `.github/copilot-instructions.md`, repeat the comparison, and then revert only those added rules. This fallback tests repository-wide guidance, not path-specific activation — do not replace the existing file's contents.
 
 ### Comparison Run
 
@@ -482,13 +503,18 @@ Manual review, Copilot-as-reviewer, and `/security-review` each catch different 
 
 ### Your Task
 
-Before opening the Ask session, capture what actually changed:
+Before opening the Ask session, capture what actually changed. Your generated test file may be untracked, and ordinary `git diff` does not show untracked file contents:
 
 ```bash
-git diff -- frontend/src/security/OwnerNoticePreview.tsx backend/src/main/java/com/workshop/petcareops/security/TemplatePreviewController.java backend/src/test/java/com/workshop/petcareops/security/TemplatePreviewControllerTest.java
+git status --short
+
+git diff -- \
+  frontend/src/security/OwnerNoticePreview.tsx \
+  backend/src/main/java/com/workshop/petcareops/security/TemplatePreviewController.java \
+  > module-05-remediation.diff
 ```
 
-Copilot cannot reliably tell what the remediation changed from the current files alone. In a new **Ask** session, attach the two implementation files, `TemplatePreviewControllerTest.java`, and the diff above, then submit:
+Copilot cannot reliably tell what the remediation changed from the current files alone. In a new **Ask** session, attach the two implementation files, the generated `TemplatePreviewControllerTest.java` file directly, and `module-05-remediation.diff`, then submit:
 
 ```text
 Review these two implementation files for security risks and evaluate the current remediations. You may inspect directly relevant focused tests solely to evaluate whether the remediations are adequately verified. Do not expand into unrelated files or architecture.
@@ -642,7 +668,7 @@ If you finish early, choose one:
 - compare changed code against the Required Evidence for that exercise instead of trusting the first draft
 - if you start a new session, reattach the target files and paste your complete task prompt
 - **Exercise 4 instructions not appearing to influence output:** confirm the `applyTo` glob matches the attached file's path; confirm the file is attached, selected, or referenced; confirm it was saved before the comparison run; confirm both runs used the same model and the identical prompt from a clean session
-- **frontend fix not taking effect:** hard-refresh the browser; if that fails, stop the dev server with `Ctrl+C` and run `npm run dev` again
+- **frontend fix not taking effect:** hard-refresh the browser; if that fails, stop the dev server with `Ctrl+C` and run `npm run dev -- --port 5173 --strictPort` again
 - **`/security-review` not listed:** skip the optional `/security-review` column and complete the required manual-versus-Ask comparison. You may save the Ask prompt as a prompt file for reuse, but do not count it as an independent reviewer.
 - **symlink stretch test in Exercise 2:** skip on Windows if symlink creation requires elevated permissions in your environment
 - **`./mvnw: Permission denied` on macOS/Linux:** confirm the repository was cloned rather than downloaded as a ZIP, then run `chmod +x backend/mvnw`
