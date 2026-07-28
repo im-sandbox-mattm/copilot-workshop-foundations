@@ -74,17 +74,16 @@ Do not ask Copilot to inspect, rewrite, or refactor unrelated parts of the repos
 
 Open the `copilot-workshop-foundations` repository.
 
-Create a clean working branch from the Module 05 starter tag:
+Fetch the Module 05 starter tag and create your own working branch from it:
 
 ```bash
-git switch -c workshop/module-05 module-05-start-v2
+git fetch --tags --prune
+git rev-parse --verify module-05-start-v2
+git status --short
+git switch -c workshop/module-05-YOURNAME module-05-start-v2
 ```
 
-If the working branch already exists locally, switch to it instead:
-
-```bash
-git switch workshop/module-05
-```
+`git status --short` should produce no output before you create the branch. Replace `YOURNAME` with something that makes your branch unique. If your team prefers a shared branch name instead, do not reuse an existing `workshop/module-05` branch unless you have verified it is clean and based on the current tag — an older branch may point to a prior starter state or contain someone else's work.
 
 Open these files:
 
@@ -93,17 +92,48 @@ Open these files:
 
 Do not read ahead into later exercises before you reach them; several depend on you not already knowing the answer.
 
-### Prerequisites
+### Required Versions
 
-Confirm that Node.js, npm, and Java are available:
+Confirm the following before the workshop:
+
+- Git 2.23 or later
+- Java 21
+- Node.js 20.19+, 22.13+, or 24+
+- npm supplied with the supported Node.js installation
+- a current GitHub Copilot extension, an authenticated Copilot license, and access to Ask and Agent mode
+
+Run:
 
 ```bash
+git --version
 node --version
 npm --version
 java --version
 ```
 
-A global Maven installation is not required. The backend includes the Maven Wrapper, which downloads and uses the repository's configured Maven version.
+Then confirm the Maven Wrapper sees the expected Java installation:
+
+**macOS or Linux**
+
+```bash
+cd backend
+./mvnw --version
+cd ..
+```
+
+**Windows PowerShell**
+
+```powershell
+cd backend
+.\mvnw.cmd --version
+cd ..
+```
+
+Check the "Java version" line the Wrapper reports. This catches the common case where `java --version` shows Java 21 but `JAVA_HOME` causes Maven to use an older JDK.
+
+### Network Requirement
+
+The initial setup requires approved access to the npm and Maven dependency sources configured for your environment: `npm ci` downloads packages from the npm registry, the Maven Wrapper downloads Maven itself, and Maven then downloads Spring Boot and test dependencies from Maven Central. If external package downloads are restricted in your environment, complete this setup through your organization's approved proxy or artifact repository before the workshop. Do not spend timed lab work troubleshooting dependency-access policy. Ideally, run `npm ci` and `./mvnw test` once as prework so dependencies are already cached.
 
 ### Confirm The Starter Projects Build
 
@@ -141,6 +171,8 @@ The first Maven Wrapper run may take longer while it downloads Maven and project
 
 Do this now, before the lab clock starts. Both applications need to stay running for the rest of the lab.
 
+The frontend must run on port 5173 and the backend on port 8080. The backend's CORS configuration permits only `http://localhost:5173`; if port 5173 is already in use, Vite may silently fall back to 5174, the dashboard will fail to load, and the vulnerable preview component will never render. If either port is unavailable, stop the process using it before continuing — do not accept Vite's fallback port.
+
 Open three terminals from the repository root.
 
 **Terminal 1 — Backend**
@@ -154,14 +186,34 @@ cd backend && ./mvnw spring-boot:run
 **Terminal 2 — Frontend**
 
 ```bash
-cd frontend && npm run dev
+cd frontend && npm run dev -- --port 5173 --strictPort
 ```
 
-Leave running. Open the local URL Vite prints.
+Leave running. Open `http://localhost:5173`.
 
 **Terminal 3 — Verification commands**
 
 Keep this free for lint, build, test, and Git commands for the rest of the lab.
+
+### Confirm Both Applications Are Reachable
+
+Before starting the lab clock, confirm the backend responds:
+
+**macOS or Linux**
+
+```bash
+curl http://localhost:8080/api/dashboard
+```
+
+**Windows PowerShell**
+
+```powershell
+Invoke-RestMethod http://localhost:8080/api/dashboard
+```
+
+You should see JSON, not a connection error. Then confirm the frontend dashboard loads in the browser at `http://localhost:5173`.
+
+The backend does not include Spring Boot DevTools, so it does not hot-reload. Once Exercise 2 changes the controller, the already-running backend process keeps executing the original code until you restart it. `./mvnw test` is the required verification for Exercise 2 and remains sound regardless; if you also want to exercise the endpoint manually over HTTP afterward, stop and restart the backend first.
 
 ---
 
@@ -268,10 +320,17 @@ backend/src/test/java/com/workshop/petcareops/security/TemplatePreviewController
 
 Your test matrix must go beyond a single traversal string. At minimum:
 
-- an approved template can still be read successfully
+- an approved template can still be read successfully — the approved directory (`workshop-assets/message-templates/`) contains `check-in-reminder.html` for this purpose
 - a traversal attempt toward a file **outside** the approved directory, but with an allowed extension, is rejected
 
   A fixture is provided at `workshop-assets/outside/unauthorized-template.html` for exactly this purpose. A test that only tries `../../etc/passwd` can pass for the wrong reason — for example, because an extension check rejects anything without `.html`, not because containment was actually verified. If your test would still pass after temporarily deleting any containment check, it does not prove containment.
+
+  <details>
+  <summary>Hint — locating the fixture</summary>
+
+  The external fixture is one directory above `message-templates`, so a relative traversal value from the approved directory would target `../outside/unauthorized-template.html`. This does not reveal the containment implementation; it only prevents you from testing a nonexistent path.
+
+  </details>
 
 - the client-facing error response contains no exception message or stack trace
 
@@ -403,6 +462,8 @@ applyTo: "<choose the narrowest applicable glob>"
 <!-- Derive 3-5 rules from Lab 1 -->
 ```
 
+**IDE compatibility:** This comparison is written for VS Code. Path-specific instruction activation can vary by IDE and by your installed Copilot plugin version — if `.github/instructions/*.instructions.md` does not appear to activate in your environment, fall back to a temporary repository-wide `.github/copilot-instructions.md` file for the guidance-versus-enforcement comparison, and note that this fallback does not test path-specific activation.
+
 ### Comparison Run
 
 Repeat the identical baseline prompt in a new clean session, same model, with the same file attached. Compare the two responses. Path-scoped instructions apply when Copilot is working in the context of a file matching the `applyTo` glob — merely asking the question without attaching a matching file may not activate it.
@@ -421,7 +482,13 @@ Manual review, Copilot-as-reviewer, and `/security-review` each catch different 
 
 ### Your Task
 
-In a new **Ask** session, attach both lab files and submit:
+Before opening the Ask session, capture what actually changed:
+
+```bash
+git diff -- frontend/src/security/OwnerNoticePreview.tsx backend/src/main/java/com/workshop/petcareops/security/TemplatePreviewController.java backend/src/test/java/com/workshop/petcareops/security/TemplatePreviewControllerTest.java
+```
+
+Copilot cannot reliably tell what the remediation changed from the current files alone. In a new **Ask** session, attach the two implementation files, `TemplatePreviewControllerTest.java`, and the diff above, then submit:
 
 ```text
 Review these two implementation files for security risks and evaluate the current remediations. You may inspect directly relevant focused tests solely to evaluate whether the remediations are adequately verified. Do not expand into unrelated files or architecture.
@@ -444,11 +511,13 @@ When evaluating tests, identify the exact security control or code branch each t
 Distinguish confirmed findings from hypotheses. Do not provide generic advice or invent architecture the code doesn't establish.
 ```
 
+If Copilot web access is disabled by your organization's policy, use "not verified" for OWASP mappings as instructed above rather than enabling web access or asking anyone to change organizational policy for this exercise.
+
 The required comparison for this exercise is manual review versus Copilot Ask review, captured in the table below.
 
-If `/security-review` is available in Copilot CLI (`copilot`, then `/help` to confirm it's listed) or the Copilot app, you may optionally run it against your Lab 1 changes as an additional layer beyond the required comparison — check your own version and environment, since availability can vary. It reviews active local changes and is not a full repository security audit; a clean result is not proof the code is secure.
+If `/security-review` is available in Copilot CLI (`copilot`, then `/help` to confirm it's listed) or the Copilot app, you may optionally run it against your Lab 1 changes as an additional layer beyond the required comparison. It reviews active local changes and is not a full repository security audit; a clean result is not proof the code is secure. In the CLI, launch `copilot` from the repository root while your Lab 1 changes are still present in your working tree (uncommitted, or otherwise visible to the session) — `/security-review` only sees changes it can currently observe.
 
-If you save the review prompt as `.github/prompts/security-review.prompt.md` for future reuse, do not count that as an independent verification layer — it is the same prompt, model, and review process packaged for reuse, not a second reviewer. Prompt files are fully supported in VS Code and Visual Studio, currently under preview in JetBrains IDEs and Xcode, and not supported on GitHub.com or in Copilot CLI.
+If you save the review prompt as `.github/prompts/security-review.prompt.md` for future reuse, do not count that as an independent verification layer — it is the same prompt, model, and review process packaged for reuse, not a second reviewer. Prompt-file availability varies by IDE and version; saving the prompt is optional and is not required to complete this exercise.
 
 ### Required Evidence
 
@@ -574,8 +643,9 @@ If you finish early, choose one:
 - if you start a new session, reattach the target files and paste your complete task prompt
 - **Exercise 4 instructions not appearing to influence output:** confirm the `applyTo` glob matches the attached file's path; confirm the file is attached, selected, or referenced; confirm it was saved before the comparison run; confirm both runs used the same model and the identical prompt from a clean session
 - **frontend fix not taking effect:** hard-refresh the browser; if that fails, stop the dev server with `Ctrl+C` and run `npm run dev` again
-- **`/security-review` not listed:** do not troubleshoot preview access during lab time — use the prompt-file fallback in Exercise 5
+- **`/security-review` not listed:** skip the optional `/security-review` column and complete the required manual-versus-Ask comparison. You may save the Ask prompt as a prompt file for reuse, but do not count it as an independent reviewer.
 - **symlink stretch test in Exercise 2:** skip on Windows if symlink creation requires elevated permissions in your environment
+- **`./mvnw: Permission denied` on macOS/Linux:** confirm the repository was cloned rather than downloaded as a ZIP, then run `chmod +x backend/mvnw`
 
 ## Key Takeaways
 
