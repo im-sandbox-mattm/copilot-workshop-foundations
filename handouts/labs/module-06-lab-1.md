@@ -37,7 +37,10 @@ git fetch --tags
 git switch -C module-06 module-06-2-lab
 ```
 
-> **What that last command does:** `git switch -C <new-branch-name> <starting-point>` creates a branch named `<new-branch-name>` pointing at `<starting-point>` and switches you onto it. `workshop/lab1-review` isn't anything that needs to exist beforehand — it's just a label for your own working branch, and you can name it anything. `module-06-2-lab` is the tag it's built from, and that one does need to already exist. The capital `-C` means "create it fresh, or reset it to this point if it's already there" — so this same command works whether it's your first time running it or you need to start over.
+> **What that last command does:**
+> `git switch -C module-06 module-06-2-lab` creates or resets a local
+> branch named `module-06` at the `module-06-2-lab` starting tag, then
+> switches to that branch.
 
 **Build and test commands** (optional — the lab does not require running the app; use these only if you want to confirm the project still compiles):
 

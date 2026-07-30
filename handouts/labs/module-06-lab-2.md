@@ -218,16 +218,6 @@ A cheaper run that loses an important finding is not a successful optimization.
 ---
 
 
-## Optional: Caveman Comparison
-
-https://github.com/juliusbrussee/caveman
-
-Determine whether compression reduced output size without removing evidence, uncertainty, remediation, or verification needed for the review decision.
-
-Treat reported savings as results to evaluate, not guarantees.
-
----
-
 ## Key Takeaways
 
 - Context optimization is more than shortening a prompt.

@@ -41,6 +41,8 @@ The response has not been summarized, corrected, or rewritten. Intermediate narr
 
 ## Primary Files Under Review
 
+The review prompt named these four primary files:
+
 ```text
 backend/src/main/java/com/workshop/petcareops/dashboard/EscalationBoardController.java
 backend/src/main/java/com/workshop/petcareops/dashboard/EscalationBoardService.java
@@ -48,7 +50,21 @@ backend/src/main/java/com/workshop/petcareops/dashboard/EscalationSummaryRespons
 backend/src/main/java/com/workshop/petcareops/dashboard/ClinicianEscalationLoad.java
 ```
 
-The baseline also attached supporting dashboard, follow-up, and modernization files. These additional attachments are part of the deliberately broad baseline context.
+Beyond the four primary files, the baseline attached every Java file in these directories:
+
+```text
+backend/src/main/java/com/workshop/petcareops/dashboard/
+backend/src/main/java/com/workshop/petcareops/followup/
+backend/src/main/java/com/workshop/petcareops/modernization/
+```
+
+The full raw Maven output in the following file was also supplied:
+
+```text
+handouts/assets/lab2-baseline-test-output.txt
+```
+
+This deliberately broad attachment set was part of the inefficient baseline context.
 
 ---
 
