@@ -35,7 +35,7 @@ The response has not been summarized, corrected, or rewritten. Intermediate narr
 - **Reported errors:** 1
 - **Error detail:** One `read_file` tool call failed because Copilot supplied a repository-relative path where the tool required an absolute path. The failed request targeted `EscalationBoardService.java`. The agent recovered through the supplied attachments and subsequent searches and completed the review.
 
-> **Baseline-context note:** The run included 19 attached Java files plus the full raw Maven test output in `handouts/assets/lab2-baseline-test-output.txt`. The raw test output is intentionally part of the inefficient baseline context and is one of the inputs participants may choose to remove, summarize, or replace with a deterministic check in their restructured configuration.
+> **Baseline-context note:** The run included 19 attached Java files plus the captured Maven test output in `handouts/assets/lab2-baseline-test-output.txt`. The raw test output is intentionally part of the inefficient baseline context and is one of the inputs participants may choose to remove, summarize, or replace with a deterministic check in their restructured configuration.
 
 ---
 
