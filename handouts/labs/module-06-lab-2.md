@@ -1,109 +1,237 @@
 # Lab 2: Cost-Aware Review Standardization
 
-**No GitHub account, GitHub-hosted repository, or Copilot license is required to complete this lab.** Both the baseline and the optimized review run are prepared and supplied. Your hands-on work is restructuring real instruction, prompt, skill, and script files yourself and reasoning about what belongs where.
+**This lab uses GitHub Copilot in the IDE. Access to a GitHub-hosted repository or GitHub Copilot Code Review is not required.**
+
+Work in pairs or small groups and perform **one live Copilot run per group**.
+
+Your challenge is to restructure how review context is supplied, then determine whether your review beats the provided baseline without lowering its decision quality.
 
 ## What You Will Practice
 
-- inspecting a deliberately inefficient review workflow and identifying where the waste actually is
-- deciding what belongs in repo-wide instructions, path-specific instructions, a prompt file, a skill, a deterministic script, or nowhere at all
-- comparing a prepared inefficient baseline against a prepared optimized run
-- reading Agent Debug Log / Cache Explorer telemetry instead of guessing at cost
-- deciding whether an optimization is actually worth adopting — not just whether it's cheaper
+- identifying costly or low-value review context
+- choosing the appropriate place for reusable guidance
+- restructuring Copilot instructions, skills, agents, attachments, or deterministic checks
+- comparing model usage and review quality
+- deciding whether an optimization is worth adopting
 
-## Module Focus
-
-Both the baseline and the optimized run in this lab are **supplied to you** — that isn't a shortcut, it's how a real controlled comparison has to work. A genuine before-and-after test requires holding everything constant except the one thing being tested, and building both halves live in one session would contaminate exactly that. Your actual work is Step 2: deciding how you'd restructure the baseline's context, and editing real files to do it.
+---
 
 ## Before You Start
 
-This lab reuses the same branch as Lab 1.
+This lab uses the same starting point as Lab 1.
 
-**If you already did Lab 1:** stay on your `workshop/lab1-review` branch — nothing more to do.
+### If You Already Completed Lab 1
 
-**If you're starting with Lab 2 directly:**
+Remain on the branch you created from `module-06-2-lab`.
+
+### If You Are Starting Directly with Lab 2
 
 ```bash
-# If you haven't cloned yet:
+# If you have not cloned the repository:
 git clone https://github.com/im-sandbox-mattm/copilot-workshop-foundations.git
 cd copilot-workshop-foundations
 
-# If you already have it cloned, cd into it instead, then:
+# If you already cloned it:
 git fetch --tags
 
-# Everyone runs this:
+# Create or reset your workshop branch:
 git switch -C module-06 module-06-2-lab
 ```
 
-> **What that last command does:** `git switch -C <new-branch-name> <starting-point>` creates a branch named `<new-branch-name>` pointing at `<starting-point>` and switches you onto it. `workshop/lab1-review` isn't anything that needs to exist beforehand — it's just a label for your own working branch. `module-06-2-lab` is the tag it's built from, and that one does need to already exist. The capital `-C` means "create it fresh, or reset it to this point if it's already there."
+> The capital `-C` creates the branch if it does not exist or resets it to the lab starting tag if it does.
 
-Open `handouts/assets/lab2-baseline-and-comparison.md` now — it contains the full baseline package (prompt, instructions file, raw context, response, and telemetry) and the full optimized reference package that this lab works from.
+---
 
-## Step 1: Inspect the Baseline (supplied — read, don't generate)
+## Step 1: Understand the Baseline
 
-Read the prepared baseline package in `handouts/assets/lab2-baseline-and-comparison.md`. Catalog what's actually being sent, without judging it yet:
+Open:
 
-- What's in the prompt itself?
-- What's in the instructions file, and how much of it is relevant to *this* review?
-- What raw, unfiltered content is attached (command output, whole files, prior chat history)?
-- What do the credit and telemetry numbers say about where the cost actually went?
+```text
+handouts/assets/baseline.md
+handouts/assets/lab2-baseline-response.md
+```
 
-## Step 2: Restructure (the hands-on step)
+`baseline.md` defines:
 
-Decide, for every piece of context in the baseline, where it belongs:
+- the benchmark to beat;
+- the settings that must remain fixed;
+- the review-quality threshold.
 
-- Repository-wide instructions (`copilot-instructions.md`)
-- Path-specific instructions (`*.instructions.md` with `applyTo`)
-- A reusable prompt file
-- An agent skill
-- A deterministic script or test (no model involvement at all)
-- Nowhere — cut it
+`lab2-baseline-response.md` contains the complete response and the context used to generate it.
 
-Actually write these files — draft the trimmed `copilot-instructions.md`, the path-specific instructions file, or whatever your restructuring calls for. This is the exercise; the files don't need to run against a live Copilot session to be real work.
+Do not rerun the baseline.
 
-## Step 3: Inspect the Optimized Reference (supplied)
+As a group, identify:
 
-Read the prepared optimized package in `handouts/assets/lab2-baseline-and-comparison.md` — generated in advance under the same controlled conditions (same model, same diff, same verification commands) against a restructuring similar to what Step 2 asks you to design. Compare your own restructuring decisions against it: where did you agree, where did you diverge, and why?
+- which findings are well supported;
+- which findings are weak, overstated, or low value;
+- anything important the baseline missed;
+- where the response would still require human validation.
 
-## Step 4: Compare
+Do not open the facilitator reference yet.
 
-Fill in this table using the baseline and optimized packages:
+---
 
-| Measure | Baseline | Optimized |
-|---|---|---|
-| AI credits consumed | | |
+## Step 2: Restructure the Context
+
+Inspect the baseline context files:
+
+```text
+.github/copilot-instructions.md
+.github/instructions/dashboard-review.instructions.md
+.github/agents/lab2-review.agent.md
+handouts/assets/lab2-baseline-test-output.txt
+```
+
+Also review the attached-file manifest in:
+
+```text
+handouts/assets/lab2-baseline-response.md
+```
+
+Decide what should:
+
+- remain as-is;
+- move to a narrower or task-specific scope;
+- load only when relevant;
+- be replaced by a deterministic check;
+- or be removed.
+
+You may revise or create:
+
+- repository-wide or path-specific instructions;
+- an agent skill;
+- reference files;
+- the manually attached context;
+- a deterministic script or test;
+- a custom agent that retains the permitted read-only tool capabilities.
+
+You are not required to use every mechanism.
+
+Do not change:
+
+- the application code;
+- the review scope;
+- the exact review prompt;
+- the controlled execution settings in `baseline.md`.
+
+Implement your chosen changes.
+
+Before continuing, be ready to state:
+
+> We changed __________ because we expect it to reduce or improve __________.
+
+---
+
+## Step 3: Run the Review Once
+
+Verify that your setup follows the controls in:
+
+```text
+handouts/assets/baseline.md
+```
+
+Start a **fresh Copilot chat**.
+
+Provide only the context required by your redesigned configuration.
+
+Submit the exact prompt from:
+
+```text
+handouts/assets/lab2-review-prompt.md
+```
+
+Do not:
+
+- alter the prompt;
+- add hints from the baseline response;
+- tell Copilot which findings to reproduce;
+- reprompt to improve the answer;
+- ask Copilot to rewrite the result.
+
+Save the response exactly as generated.
+
+---
+
+## Step 4: Compare the Results
+
+Open the Agent Debug Log for your live run.
+
+### Model Usage
+
+| Measure | Baseline | Your Run |
+|---|---:|---:|
+| Copilot Usage (AIC) | | |
 | Input tokens | | |
-| Cached tokens | | |
+| Cached input tokens | | |
+| Fresh input tokens | | |
 | Output tokens | | |
-| Output size (characters) | | |
-| Valid findings | | |
-| False positives | | |
-| Evidence retained (all 6 contract fields present?) | | |
-| Verification retained | | |
-| Reading time (estimate from output length/structure) | | |
+| Total tokens | | |
+| Model turns | | |
+| Tool calls | | |
+| Errors | | |
 
-## Step 5: Recommend
+Use the baseline values and formulas in:
 
-Answer, in writing:
+```text
+handouts/assets/baseline.md
+```
 
-1. Which specific restructuring choice produced the biggest cost reduction in the optimized package?
-2. Did review quality hold, improve, or degrade between baseline and optimized? Point to specific findings, not a gut feeling.
-3. Would you adopt, reject, or pilot each restructuring choice individually? An optimization that saves credits but drops a real finding is not a win — say so if that's what the evidence shows.
+### Review Quality
+
+Compare the two responses and record:
+
+| Question | Result |
+|---|---|
+| Which supported baseline findings were retained? | |
+| Which supported findings were missed? | |
+| Which unsupported or overstated findings were removed? | |
+| Did the new run introduce unsupported findings? | |
+| Did it identify any new valid findings? | |
+| Were evidence, consequence, confidence, remediation, and verification preserved? | |
+| Which response requires less human validation? | |
+
+Finding count alone does not determine quality.
+
+---
+
+## Step 5: Decide Whether You Beat the Baseline
+
+Complete:
+
+> Our configuration did / did not beat the baseline because ____________________________________.
+
+Support your conclusion with:
+
+1. the Agent Debug Log telemetry;
+2. specific differences between the findings;
+3. the human effort required to validate and use each response.
+
+Then classify your restructuring:
+
+- **Adopt**
+- **Reject**
+- **Pilot further**
+
+A cheaper run that loses an important finding is not a successful optimization.
+
+---
+
 
 ## Optional: Caveman Comparison
 
-A prepared baseline-vs-compressed comparison is included in `handouts/assets/lab2-baseline-and-comparison.md`'s Caveman section — use that unless a live demo is available. No participant is required to install it. Evaluate, don't just measure the size difference: did compression reduce visible output and subsequent context growth **without removing** the evidence, uncertainty, commands, rationale, or verification needed to make a review decision? Caveman's savings figures are community-reported, not a GitHub guarantee — treat them as a claim to test, not a fact to cite.
+https://github.com/juliusbrussee/caveman
 
-## Optional Licensed Extension
+Determine whether compression reduced output size without removing evidence, uncertainty, remediation, or verification needed for the review decision.
 
-If you already have approved Copilot access, you may — after completing Steps 1–5, not instead of them — run your own restructured setup in a fresh Copilot session (holding model, IDE version, and verification commands constant, and *not* using Auto model selection, which would introduce an uncontrolled variable) and compare your live numbers against the prepared optimized reference. This is optional and not required to complete the lab.
+Treat reported savings as results to evaluate, not guarantees.
 
-## If You Get Stuck
-
-- If your Step 2 restructuring differs a lot from the prepared optimized reference, that's fine — compare and discuss why in the debrief, it isn't a wrong answer.
-- If you're unsure whether something belongs in instructions vs. a skill vs. a script, default to: does this need to run without any model reasoning at all? If yes, script. Does it apply to nearly everything? Instructions. Does it apply only when a specific task is happening? Skill.
+---
 
 ## Key Takeaways
 
-- The biggest waste is usually noisy, redundant context — not the prompt itself.
-- A restructured setup should be *smaller and higher-signal*, not just differently organized.
-- Never call an optimization successful because it used fewer tokens. It has to hold the quality bar too.
+- Context optimization is more than shortening a prompt.
+- Measure cost and review quality together.
+- Load guidance at the narrowest useful scope.
+- Use deterministic checks where model reasoning adds no value.
+- The best configuration reduces model and reviewer effort without weakening the decision.
