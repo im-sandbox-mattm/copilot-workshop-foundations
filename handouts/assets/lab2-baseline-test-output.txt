@@ -13,7 +13,7 @@
 [INFO] Nothing to compile - all classes are up to date.
 [INFO] 
 [INFO] --- resources:3.3.1:testResources (default-testResources) @ petcare-ops ---
-[INFO] skip non existing resourceDirectory /Users/matt/Desktop/InfoMagnus/BottomLine/demos/copilot-workshop-foundations/backend/src/test/resources
+[INFO] skip non existing resourceDirectory <local-checkout>/backend/src/test/resources
 [INFO] 
 [INFO] --- compiler:3.14.1:testCompile (default-testCompile) @ petcare-ops ---
 [INFO] Nothing to compile - all classes are up to date.
@@ -45,7 +45,7 @@ OpenJDK 64-Bit Server VM warning: Sharing is only supported for boot loader clas
 
  :: Spring Boot ::                (v3.5.7)
 
-2026-07-30T03:53:49.154-04:00  INFO 59316 --- [petcare-ops] [           main] c.w.p.PetcareOpsApplicationTests         : Starting PetcareOpsApplicationTests using Java 25.0.1 with PID 59316 (started by matt in /Users/matt/Desktop/InfoMagnus/BottomLine/demos/copilot-workshop-foundations/backend)
+2026-07-30T03:53:49.154-04:00  INFO <redacted> --- [petcare-ops] [           main] c.w.p.PetcareOpsApplicationTests         : Starting PetcareOpsApplicationTests using Java 25.0.1 with PID <redacted> (started by <local-user> in <local-checkout>/backend)
 2026-07-30T03:53:49.154-04:00  INFO 59316 --- [petcare-ops] [           main] c.w.p.PetcareOpsApplicationTests         : No active profile set, falling back to 1 default profile: "default"
 2026-07-30T03:53:49.503-04:00  INFO 59316 --- [petcare-ops] [           main] c.w.p.PetcareOpsApplicationTests         : Started PetcareOpsApplicationTests in 0.441 seconds (process running for 1.146)
 [INFO] Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.570 s -- in com.workshop.petcareops.PetcareOpsApplicationTests
@@ -60,3 +60,5 @@ OpenJDK 64-Bit Server VM warning: Sharing is only supported for boot loader clas
 [INFO] Total time:  1.638 s
 [INFO] Finished at: 2026-07-30T03:53:49-04:00
 [INFO] ------------------------------------------------------------------------
+
+[Sanitization note: Absolute local paths, username, and process ID were redacted. Test results are otherwise unchanged.]

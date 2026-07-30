@@ -24,7 +24,7 @@ The response has not been summarized, corrected, or rewritten. Intermediate narr
 - **Model selection:** Manual; Auto model selection disabled
 - **Thinking effort:** Default
 - **Primary review scope:** Four dashboard implementation/model files
-- **Baseline attachments:** 19 Java files
+- **Baseline attachments:** 19 Java files plus `handouts/assets/lab2-baseline-test-output.txt`
 - **Review prompt:** Exact text from `handouts/assets/lab2-review-prompt.md`
 - **Session created:** July 30, 2026 at 3:55:56 AM
 - **Session last activity:** July 30, 2026 at 4:02:50 AM
@@ -58,7 +58,7 @@ backend/src/main/java/com/workshop/petcareops/followup/
 backend/src/main/java/com/workshop/petcareops/modernization/
 ```
 
-The full raw Maven output in the following file was also supplied:
+The captured Maven output is provided in the following file. Absolute local paths and process details have been redacted from the participant copy:
 
 ```text
 handouts/assets/lab2-baseline-test-output.txt
@@ -72,7 +72,7 @@ This deliberately broad attachment set was part of the inefficient baseline cont
 
 | Measure | Value |
 |---|---:|
-| AI credits consumed | 6.62 |
+| Copilot Usage (AIC) | 6.62 |
 | Model turns | 19 |
 | Tool calls | 21 |
 | Input tokens | 427,209 |

@@ -68,7 +68,6 @@ As a group, identify:
 - anything important the baseline missed;
 - where the response would still require human validation.
 
-Do not open the facilitator reference yet.
 
 ---
 
@@ -81,12 +80,6 @@ Inspect the baseline context files:
 .github/instructions/dashboard-review.instructions.md
 .github/agents/lab2-review.agent.md
 handouts/assets/lab2-baseline-test-output.txt
-```
-
-Also review the attached-file manifest in:
-
-```text
-handouts/assets/lab2-baseline-response.md
 ```
 
 Decide what should:
