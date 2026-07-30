@@ -16,7 +16,11 @@ Both the baseline and the optimized run in this lab are **supplied to you** — 
 
 ## Before You Start
 
-This lab reuses the same branch as Lab 1 — no need to re-clone if you already have it from there.
+This lab reuses the same branch as Lab 1.
+
+**If you already did Lab 1:** stay on your `workshop/lab1-review` branch — nothing more to do.
+
+**If you're starting with Lab 2 directly:**
 
 ```bash
 # If you haven't cloned yet:
@@ -27,16 +31,16 @@ cd copilot-workshop-foundations
 git fetch --tags
 
 # Everyone runs this:
-git switch -c module-06-build module-06-2-lab
+git switch -C module-06 module-06-2-lab
 ```
 
-> **What that last command does:** `git switch -C <new-branch-name> <starting-point>` creates a branch named `<new-branch-name>` pointing at `<starting-point>` and switches you onto it. `workshop/lab2-optimize` isn't anything that needs to exist beforehand — it's just a label for your own working branch. `module-06-lab-starter` is the tag it's built from, and that one does need to already exist. The capital `-C` means "create it fresh, or reset it to this point if it's already there."
+> **What that last command does:** `git switch -C <new-branch-name> <starting-point>` creates a branch named `<new-branch-name>` pointing at `<starting-point>` and switches you onto it. `workshop/lab1-review` isn't anything that needs to exist beforehand — it's just a label for your own working branch. `module-06-2-lab` is the tag it's built from, and that one does need to already exist. The capital `-C` means "create it fresh, or reset it to this point if it's already there."
 
-Open `lab2-baseline-and-comparison.md` now — it contains the full baseline package (prompt, instructions file, raw context, response, and telemetry) and the full optimized reference package that this lab works from.
+Open `handouts/assets/lab2-baseline-and-comparison.md` now — it contains the full baseline package (prompt, instructions file, raw context, response, and telemetry) and the full optimized reference package that this lab works from.
 
 ## Step 1: Inspect the Baseline (supplied — read, don't generate)
 
-Read the prepared baseline package in `lab2-baseline-and-comparison.md`. Catalog what's actually being sent, without judging it yet:
+Read the prepared baseline package in `handouts/assets/lab2-baseline-and-comparison.md`. Catalog what's actually being sent, without judging it yet:
 
 - What's in the prompt itself?
 - What's in the instructions file, and how much of it is relevant to *this* review?
@@ -58,7 +62,7 @@ Actually write these files — draft the trimmed `copilot-instructions.md`, the 
 
 ## Step 3: Inspect the Optimized Reference (supplied)
 
-Read the prepared optimized package in `lab2-baseline-and-comparison.md` — generated in advance under the same controlled conditions (same model, same diff, same verification commands) against a restructuring similar to what Step 2 asks you to design. Compare your own restructuring decisions against it: where did you agree, where did you diverge, and why?
+Read the prepared optimized package in `handouts/assets/lab2-baseline-and-comparison.md` — generated in advance under the same controlled conditions (same model, same diff, same verification commands) against a restructuring similar to what Step 2 asks you to design. Compare your own restructuring decisions against it: where did you agree, where did you diverge, and why?
 
 ## Step 4: Compare
 
@@ -87,7 +91,7 @@ Answer, in writing:
 
 ## Optional: Caveman Comparison
 
-A prepared baseline-vs-compressed comparison is included in `lab2-baseline-and-comparison.md`'s Caveman section — use that unless a live demo is available. No participant is required to install it. Evaluate, don't just measure the size difference: did compression reduce visible output and subsequent context growth **without removing** the evidence, uncertainty, commands, rationale, or verification needed to make a review decision? Caveman's savings figures are community-reported, not a GitHub guarantee — treat them as a claim to test, not a fact to cite.
+A prepared baseline-vs-compressed comparison is included in `handouts/assets/lab2-baseline-and-comparison.md`'s Caveman section — use that unless a live demo is available. No participant is required to install it. Evaluate, don't just measure the size difference: did compression reduce visible output and subsequent context growth **without removing** the evidence, uncertainty, commands, rationale, or verification needed to make a review decision? Caveman's savings figures are community-reported, not a GitHub guarantee — treat them as a claim to test, not a fact to cite.
 
 ## Optional Licensed Extension
 
