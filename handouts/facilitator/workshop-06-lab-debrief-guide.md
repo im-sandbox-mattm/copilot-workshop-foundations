@@ -8,7 +8,7 @@ Use the same sequence after each lab:
 2. **Decision:** What conclusion did they reach, and why?
 3. **Transfer:** How would the decision change in their own environment?
 
-## Lab 1: Governed MCP Workflow
+## Lab 1: Task-Level MCP Governance
 
 Ask:
 
@@ -18,12 +18,13 @@ Ask:
 - Where did you draw the line between an acceptable limitation and unjustified privilege expansion?
 - What would change if this were an internal enterprise MCP server rather than a local workshop server?
 - What would you require before approving this workflow for broader use?
+- Which reassessment or revocation trigger did you choose, and why?
 
 Close with:
 
 > What is one decision from this exercise that you would apply differently in your own environment next week?
 
-## Lab 2: IDE Standardization and Multi-Project Scope
+## Lab 2: Workspace Governance and Multi-Project Scope
 
 Ask:
 
@@ -33,6 +34,7 @@ Ask:
 - Where did frontend and backend needs diverge?
 - What would a JetBrains user need that a VS Code user would not?
 - Which control would you escalate to enterprise management, and why?
+- Which control should not be centralized across both projects?
 
 Close with:
 
