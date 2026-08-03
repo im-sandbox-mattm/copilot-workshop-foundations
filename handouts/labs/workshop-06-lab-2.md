@@ -32,3 +32,80 @@ Produce and verify a configuration plan that identifies:
 - Preserve the existing build and test commands for each stack.
 - Distinguish repository guidance from IDE behavior and enterprise enforcement.
 - Keep changes small, reviewable, and portable where practical.
+
+## Workspace Baseline
+
+Inspect these repository-controlled files:
+
+- `.editorconfig`
+- `.vscode/settings.json`
+- `.vscode/extensions.json`
+- `.vscode/tasks.json`
+- `.github/copilot-instructions.md`
+- `.github/instructions/frontend.instructions.md`
+- `.github/instructions/backend.instructions.md`
+
+## Activity
+
+### Step 1: Classify each control
+
+For each file or setting, classify it as one of the following:
+
+- portable repository convention;
+- IDE-specific repository configuration;
+- project-specific execution configuration;
+- Copilot guidance;
+- user preference;
+- enterprise-managed enforcement.
+
+Explain why the chosen layer is appropriate.
+
+### Step 2: Evaluate the multi-project workspace
+
+Determine:
+
+- which controls should apply across both projects;
+- which controls must remain specific to the frontend or backend;
+- which recommended extensions are optional rather than enforced;
+- which settings may behave differently in another IDE;
+- which requirements cannot be guaranteed by committed repository files alone.
+
+### Step 3: Choose an implementation path
+
+**VS Code path**
+
+Inspect the committed workspace files and make one small improvement that preserves the frontend/backend boundary.
+
+**Other IDE path**
+
+Identify the closest equivalent for the same requirement in your IDE. Do not recreate VS Code-specific files solely to complete the lab.
+
+### Step 4: Verify the workspace
+
+Use the relevant checks:
+
+```bash
+cd frontend
+npm run lint
+npm run build
+
+cd ../backend
+./mvnw test
+```
+
+Expected baseline:
+
+- frontend lint succeeds;
+- frontend build succeeds;
+- backend tests report 2 tests with 0 failures;
+- frontend Copilot guidance does not apply to backend Java files;
+- backend Copilot guidance does not apply to frontend TypeScript files.
+
+### Step 5: Record the decision
+
+Produce a concise table with these columns:
+
+| Control | Chosen layer | Scope | Advisory or enforced | Verification |
+|---|---|---|---|---|
+
+Include at least one control that requires enterprise management outside the repository.
