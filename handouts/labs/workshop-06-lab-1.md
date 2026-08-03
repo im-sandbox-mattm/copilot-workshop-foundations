@@ -21,8 +21,6 @@ A development team has connected GitHub Copilot to a workshop-safe Chrome DevToo
 
 Produce a concise **task-level MCP decision record** for this specific workflow.
 
-This is not an official MCP standard. It is a practical pattern the facilitator would recommend, based on observations across different organizations, for teams that already govern MCP servers centrally.
-
 Your record must state:
 
 1. the approved task and server context;
