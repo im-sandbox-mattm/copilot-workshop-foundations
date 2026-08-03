@@ -19,13 +19,19 @@ A development team has connected GitHub Copilot to a workshop-safe Chrome DevToo
 
 ## Required Outcome
 
-Produce a short recommendation that states:
+Produce a concise **task-level MCP decision record** for this specific workflow.
 
-1. whether the workflow is acceptable for the stated task;
-2. which MCP tools and permissions are required;
-3. which capabilities are unavailable or intentionally restricted;
-4. what evidence supports the recommendation;
-5. how the result should be independently verified.
+This is not an official MCP standard. It is a practical pattern the facilitator would recommend, based on observations across different organizations, for teams that already govern MCP servers centrally.
+
+Your record must state:
+
+1. the approved task and server context;
+2. the minimum required tools;
+3. any capabilities intentionally denied;
+4. the exception or escalation path if the task cannot proceed;
+5. the evidence supporting the decision;
+6. the independent verification method;
+7. any conditions that should trigger reassessment or revocation.
 
 ## Constraints
 
@@ -103,16 +109,22 @@ Evaluate the workflow for this bounded task only. Consider:
 - what approval or review should occur before use;
 - what must be verified outside the MCP workflow.
 
-### Step 4: Produce the recommendation
+### Step 4: Produce the decision record
 
-Write a recommendation of no more than 250 words using this structure:
+Write no more than 300 words using this structure:
+
+**Task and server context:** State the bounded task and the server involved.
 
 **Decision:** Approve, approve with conditions, or do not approve.
 
-**Required access:** Name the minimum server tools and permissions required.
+**Minimum required tools:** Name only the tools necessary for this task.
 
-**Evidence:** Cite the specific observed behavior that supports the decision.
+**Denied capabilities:** Identify broader capabilities that should remain unavailable.
 
-**Limitations:** State what the evidence does not establish.
+**Exception or escalation path:** State what should happen if the approved tool set is insufficient.
+
+**Evidence:** Cite the observed behavior supporting the decision.
 
 **Independent verification:** Describe at least one deterministic check outside the MCP workflow.
+
+**Reassessment trigger:** Name at least one condition that would require the decision to be reviewed again.
