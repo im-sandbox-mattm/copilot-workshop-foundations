@@ -1,5 +1,5 @@
 ---
-applyTo: "copilot-workshop-foundations/backend/src/main/java/com/workshop/petcareops/dashboard/**"
+applyTo: "backend/src/main/java/com/workshop/petcareops/dashboard/**"
 ---
 
 - New dashboard services should reuse existing shared components
