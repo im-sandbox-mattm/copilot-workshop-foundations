@@ -29,9 +29,17 @@ Demonstrate that an MCP server’s configured capabilities are not automatically
 1. Open the workshop frontend.
 2. Inspect network activity with `list_network_requests`.
 3. Show `/api/dashboard` failing while the backend is unavailable.
-4. Start the backend and independently confirm the endpoint returns HTTP 200.
+4. Start the backend (./mvnw spring-boot:run) and independently confirm the endpoint returns HTTP 200 (curl -i http://localhost:8080/api/dashboard).
 5. Refresh the frontend and show `/api/dashboard` returning HTTP 200.
 6. Ask: What does the MCP evidence prove, and what remains unverified?
+
+## Presenter Note: Why Use MCP Here?
+
+For a known endpoint, a direct command such as `curl` is cheaper and more deterministic. The MCP workflow adds value because it inspects what the frontend actually did inside the browser: which requests were made, whether they failed, and how browser-side evidence changed after the backend became available.
+
+The same evidence could be gathered manually in DevTools or through browser automation. Copilot’s value is guided discovery, correlation, and explanation across those browser signals—not replacing every command-line check.
+
+Use the independent `curl` result as verification rather than asking MCP to verify its own conclusion.
 
 ### Part 3: Restrict the tool set
 
