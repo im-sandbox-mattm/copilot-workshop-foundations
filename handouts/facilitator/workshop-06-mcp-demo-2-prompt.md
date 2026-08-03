@@ -1,4 +1,4 @@
-# MCP Demo 2 Prompt
+# MCP Demo 2 Prompt [new chat window]
 
 > Determine whether the dashboard at `http://localhost:5173/` loaded valid data using only the currently approved Chrome DevTools MCP tools.
 >
