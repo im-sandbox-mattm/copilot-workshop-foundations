@@ -6,6 +6,12 @@
 
 Force a decision between broadening MCP access, accepting a bounded failure, or switching to a narrower independent verification method.
 
+## Consulting Framing
+
+Based on patterns observed across different organizations, this demonstration uses a task-level decision pattern that I would recommend layering on top of an existing MCP registry.
+
+It is not an official MCP standard. It applies established principles—least privilege, explicit authorization, auditability, independent verification, and revocable access—to the decision at hand.
+
 ## Starting State
 
 - Chrome DevTools MCP server configured

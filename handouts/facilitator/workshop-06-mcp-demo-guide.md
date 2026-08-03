@@ -6,6 +6,14 @@
 
 Demonstrate that an MCP server’s configured capabilities are not automatically available to every task. The effective boundary depends on the tools exposed, enabled, approved, and independently verified for the current workflow.
 
+## Audience Framing
+
+Assume the organization already has an MCP registry, server-assessment process, and approved deployment paths.
+
+This demonstration focuses on the layer that remains after server approval: whether a specific task should be allowed to use a specific tool, what evidence that tool produces, and how the result should be independently verified.
+
+Treat the local Chrome DevTools server as an exception to a registry-first operating model rather than as an introduction to MCP.
+
 ## Required Setup
 
 - GitHub Copilot in VS Code
