@@ -29,6 +29,7 @@ Produce and verify a **workspace-governance decision table** that identifies:
 - Use GitHub Copilot Chat to inspect the workspace configuration, compare control layers, and analyze one cross-project relationship.
 - Treat Copilot's output as a proposal: verify every conclusion against the repository and record any unsupported inference.
 - Copilot CLI may be used as an alternative when available, but it is not required.
+- This lab does not require MCP tools; repository inspection and project commands provide the required evidence.
 
 ## Constraints
 
@@ -57,17 +58,16 @@ frontend/backend project structure.
 
 Help me produce the required workspace-governance decision table.
 
-For each conclusion:
+For each conclusion, provide:
 
-1. cite the specific repository file or setting;
-2. distinguish direct evidence from inference;
-3. identify the appropriate layer: repository, project, IDE, user,
-   Copilot guidance, or enterprise management;
-4. state whether the control is advisory or enforced;
-5. propose a deterministic verification method.
+- the specific repository file or setting;
+- direct evidence and any inference;
+- the appropriate layer: repository, project, IDE, user, Copilot guidance,
+  or enterprise management;
+- whether the control is advisory or enforced; and
+- a deterministic verification method.
 
-Then identify one relationship between frontend/ and backend/ and
-classify it as:
+Identify one relationship between frontend/ and backend/ and classify it as:
 
 - remain shared;
 - remain project-specific; or

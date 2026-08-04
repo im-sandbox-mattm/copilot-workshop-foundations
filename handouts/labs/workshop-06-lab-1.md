@@ -2,7 +2,7 @@
 
 ## Objective
 
-Evaluate a bounded MCP-assisted workflow using supplied configuration, tool inventory, and execution evidence.
+Evaluate a bounded MCP-assisted workflow using supplied tool inventory and execution evidence.
 
 ## Scenario
 
@@ -10,7 +10,7 @@ A development team has connected GitHub Copilot to a workshop-safe Chrome DevToo
 
 - what the server can access;
 - which tools are available;
-- where approval is required;
+- what approval conditions to recommend;
 - what changes when a required tool is unavailable;
 - what the captured evidence proves;
 - what still requires independent verification.
@@ -31,10 +31,11 @@ Your record must state:
 
 ## Constraints
 
-- Use only the supplied configuration, tool inventory, and execution evidence.
+- Use only the supplied tool inventory and execution evidence.
 - Do not assume that an installed or declared server exposes every possible capability.
 - Distinguish observed behavior from assumptions.
 - Do not treat MCP output as independent verification.
+- Recommend approval and escalation conditions; do not present an approval process not documented by the evidence as fact.
 
 ## Before You Start
 
@@ -82,7 +83,7 @@ Identify:
 - the application and browser surfaces it could reach;
 - the tools that were available;
 - the capability that was intentionally not approved;
-- any capability that was configured but not usable for the task.
+- any capability that was unavailable for the task.
 
 ### Step 2: Compare the two runs
 
@@ -102,7 +103,7 @@ Evaluate the workflow for this bounded task only. Consider:
 - least-privilege access;
 - whether the available tool is necessary;
 - whether the workflow exposes more access than the task requires;
-- what approval or review should occur before use;
+- what approval or review you recommend before use;
 - what must be verified outside the MCP workflow.
 
 ### Step 4: Produce the decision record
@@ -117,7 +118,7 @@ Write no more than 300 words using this structure:
 
 **Denied capabilities:** Identify broader capabilities that should remain unavailable.
 
-**Exception or escalation path:** State what should happen if the approved tool set is insufficient.
+**Exception or escalation path:** Recommend what should happen if the approved tool set is insufficient.
 
 **Evidence:** Cite the observed behavior supporting the decision.
 
