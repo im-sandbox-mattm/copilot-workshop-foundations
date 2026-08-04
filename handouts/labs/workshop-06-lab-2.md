@@ -124,3 +124,31 @@ Include:
 - at least one stack-specific control;
 - at least one requirement that belongs in enterprise management;
 - at least one control that should not be centralized across both projects.
+
+### Step 6: Map one cross-project relationship
+
+Choose one relationship between `frontend/` and `backend/`.
+
+Examples include:
+
+- the `/api/dashboard` contract;
+- shared endpoint configuration;
+- build or release coupling;
+- verification dependencies;
+- another relationship you can support with repository evidence.
+
+Record:
+
+1. the direct repository evidence;
+2. any inference you are making;
+3. whether the relationship should:
+   - remain shared;
+   - remain project-specific; or
+   - be treated as a candidate seam requiring more evidence;
+4. what additional evidence would be required before recommending a repository split.
+
+Use this table:
+
+| Relationship | Direct evidence | Inference | Classification | Evidence still required |
+|---|---|---|---|---|
+|  |  |  |  |  |
