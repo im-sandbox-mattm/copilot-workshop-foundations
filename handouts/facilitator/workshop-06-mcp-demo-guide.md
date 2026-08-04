@@ -23,6 +23,32 @@ Treat the local Chrome DevTools server as an exception to a registry-first opera
 - `list_network_requests` initially enabled
 - `evaluate_script` available but not approved for the read-only task
 
+## Preflight and Reset Checklist
+
+Before Demo 1:
+
+1. confirm the frontend is running at `http://localhost:5173/`;
+2. stop the backend if it is already running;
+3. open the frontend in the browser;
+4. confirm `list_network_requests` is enabled;
+5. confirm `evaluate_script` remains blocked;
+6. begin from a fresh Copilot chat;
+7. reload the page immediately before collecting State 1 evidence.
+
+Between observed states:
+
+- before State 2, start the backend and reload the frontend;
+- run `curl -i http://localhost:8080/api/dashboard` outside the MCP workflow;
+- before State 3, disable `list_network_requests`;
+- start a fresh Copilot chat or clearly repeat the original task without carrying forward prior request identifiers;
+- reload the frontend before attempting the restricted-tool run.
+
+After the demo:
+
+- restore `list_network_requests` to its approved default state;
+- leave `evaluate_script` blocked;
+- stop or leave the backend running according to the next workshop activity.
+
 ## Demonstration Sequence
 
 ### Part 1: Establish the trust boundary
