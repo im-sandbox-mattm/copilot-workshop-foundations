@@ -43,11 +43,12 @@ Between observed states:
 - start a fresh Copilot chat or clearly repeat the original task without carrying forward prior request identifiers;
 - reload the frontend before attempting the restricted-tool run.
 
-After the demo:
+After Demo 1:
 
-- restore `list_network_requests` to its approved default state;
+- leave `list_network_requests` disabled for Demo 2;
 - leave `evaluate_script` blocked;
-- stop or leave the backend running according to the next workshop activity.
+- keep the frontend and backend running;
+- restore the approved default tool state only after Demo 2.
 
 ## Demonstration Sequence
 
