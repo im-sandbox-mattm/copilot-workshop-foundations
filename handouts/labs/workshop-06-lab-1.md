@@ -1,7 +1,5 @@
 # Lab 1: Evaluate a Governed MCP Workflow
 
-**Estimated time:** 20–30 minutes
-
 ## Objective
 
 Evaluate a bounded MCP-assisted workflow using supplied configuration, tool inventory, and execution evidence.
@@ -59,7 +57,7 @@ git fetch --tags
 Everyone runs:
 
 ```bash
-git switch -C module-07 <STARTING_TAG>
+git switch -C module-07 module-07-start
 ```
 
 This creates or resets a local branch named `module-07` at the workshop starting tag, then switches to that branch.
