@@ -4,21 +4,24 @@
 
 ## Objective
 
-Evaluate and improve shared development configuration for a repository containing both frontend and backend projects.
+Evaluate and improve workspace governance for a multi-project repository used across different IDEs and subject to both repository-level and enterprise controls.
 
 ## Scenario
 
-A team works across React/TypeScript and Java/Spring projects in the same repository. Developers use different IDEs, so the team needs consistent repository behavior without assuming that every IDE supports the same configuration files or controls.
+An organization maintains React/TypeScript and Java/Spring projects in the same repository. Developers use VS Code and JetBrains IDEs, while some requirements are managed centrally through enterprise tooling.
+
+The team needs a workspace model that improves consistency without forcing identical tooling, placing portable conventions, IDE-specific behavior, project-specific execution, Copilot guidance, user preferences, and enterprise enforcement at the correct layer.
 
 ## Required Outcome
 
-Produce and verify a configuration plan that identifies:
+Produce and verify a **workspace-governance decision table** that identifies:
 
 1. which settings should be shared across the repository;
 2. which settings should remain specific to a project or IDE;
 3. which controls are advisory rather than enforced;
-4. which controls require enterprise management outside the repository;
-5. how the configuration can be verified across both project areas.
+4. which controls belong in developer profiles or enterprise management rather than the repository;
+5. what must be shared across projects, what must remain stack-specific, and what should not be centralized;
+6. how each decision can be verified.
 
 ## Implementation Paths
 
@@ -76,6 +79,12 @@ Determine:
 
 Inspect the committed workspace files and make one small improvement that preserves the frontend/backend boundary.
 
+Choose one category:
+
+- correct the scope of an existing setting or instruction;
+- add or refine a verification task without changing application behavior;
+- move a control to a more appropriate repository, IDE, user, or enterprise layer.
+
 **Other IDE path**
 
 Identify the closest equivalent for the same requirement in your IDE. Do not recreate VS Code-specific files solely to complete the lab.
@@ -105,7 +114,41 @@ Expected baseline:
 
 Produce a concise table with these columns:
 
-| Control | Chosen layer | Scope | Advisory or enforced | Verification |
-|---|---|---|---|---|
+| Control | Chosen layer | Scope | Shared or stack-specific | Advisory or enforced | Verification |
+|---|---|---|---|---|---|
 
-Include at least one control that requires enterprise management outside the repository.
+Include:
+
+- at least one portable repository convention;
+- at least one IDE-specific control;
+- at least one stack-specific control;
+- at least one requirement that belongs in enterprise management;
+- at least one control that should not be centralized across both projects.
+
+### Step 6: Map one cross-project relationship
+
+Choose one relationship between `frontend/` and `backend/`.
+
+Examples include:
+
+- the `/api/dashboard` contract;
+- shared endpoint configuration;
+- build or release coupling;
+- verification dependencies;
+- another relationship you can support with repository evidence.
+
+Record:
+
+1. the direct repository evidence;
+2. any inference you are making;
+3. whether the relationship should:
+   - remain shared;
+   - remain project-specific; or
+   - be treated as a candidate seam requiring more evidence;
+4. what additional evidence would be required before recommending a repository split.
+
+Use this table:
+
+| Relationship | Direct evidence | Inference | Classification | Evidence still required |
+|---|---|---|---|---|
+|  |  |  |  |  |
