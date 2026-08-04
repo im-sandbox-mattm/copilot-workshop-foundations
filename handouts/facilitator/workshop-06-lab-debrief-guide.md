@@ -35,6 +35,11 @@ Ask:
 - What would a JetBrains user need that a VS Code user would not?
 - Which control would you escalate to enterprise management, and why?
 - Which control should not be centralized across both projects?
+- Which frontend/backend relationship did you inspect?
+- What direct repository evidence supported your classification?
+- What part of your conclusion was inference rather than direct evidence?
+- Did you classify the relationship as shared, project-specific, or a candidate seam requiring more evidence?
+- What additional evidence would you require before recommending a repository split?
 
 Close with:
 
