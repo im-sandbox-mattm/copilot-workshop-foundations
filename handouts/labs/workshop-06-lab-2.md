@@ -1,7 +1,5 @@
 # Lab 2: Standardize a Multi-Project Development Workspace
 
-**Estimated time:** 30–40 minutes
-
 ## Objective
 
 Evaluate and improve workspace governance for a multi-project repository used across different IDEs and subject to both repository-level and enterprise controls.
@@ -28,6 +26,9 @@ Produce and verify a **workspace-governance decision table** that identifies:
 - **VS Code path:** inspect and refine repository-controlled workspace configuration.
 - **Other IDE path:** evaluate the same requirements and identify the equivalent IDE or platform control.
 - Completion is based on correct placement, scope, and verification—not use of a specific IDE.
+- Use GitHub Copilot Chat to inspect the workspace configuration, compare control layers, and analyze one cross-project relationship.
+- Treat Copilot's output as a proposal: verify every conclusion against the repository and record any unsupported inference.
+- Copilot CLI may be used as an alternative when available, but it is not required.
 
 ## Constraints
 
@@ -48,11 +49,41 @@ Inspect these repository-controlled files:
 - `.github/instructions/frontend.instructions.md`
 - `.github/instructions/backend.instructions.md`
 
+## Suggested Copilot Chat Prompt
+
+```text
+Inspect the repository-controlled workspace configuration and the
+frontend/backend project structure.
+
+Help me produce the required workspace-governance decision table.
+
+For each conclusion:
+
+1. cite the specific repository file or setting;
+2. distinguish direct evidence from inference;
+3. identify the appropriate layer: repository, project, IDE, user,
+   Copilot guidance, or enterprise management;
+4. state whether the control is advisory or enforced;
+5. propose a deterministic verification method.
+
+Then identify one relationship between frontend/ and backend/ and
+classify it as:
+
+- remain shared;
+- remain project-specific; or
+- candidate seam requiring more evidence.
+
+Do not modify files. Do not recommend centralizing stack-specific
+controls merely because both projects are in one repository.
+```
+
 ## Activity
 
 ### Step 1: Classify each control
 
-For each file or setting, classify it as one of the following:
+Ask Copilot Chat to inspect the listed workspace files and propose a classification for each control.
+
+Review its proposal against the repository, correct unsupported conclusions, and classify each item as one of the following:
 
 - portable repository convention;
 - IDE-specific repository configuration;
@@ -74,6 +105,10 @@ Determine:
 - which requirements cannot be guaranteed by committed repository files alone.
 
 ### Step 3: Choose an implementation path
+
+Use Copilot Chat to propose one small improvement and explain why the control belongs at the selected layer.
+
+Do not apply the proposal until you have verified its scope and confirmed that it does not unnecessarily centralize stack-specific behavior.
 
 **VS Code path**
 
@@ -141,7 +176,9 @@ Include:
 
 ### Step 6: Map one cross-project relationship
 
-Choose one relationship between `frontend/` and `backend/`.
+Ask Copilot Chat to inspect the repository and identify one evidence-backed relationship between `frontend/` and `backend/`.
+
+Review the cited files directly before accepting the relationship or classification.
 
 Examples include:
 
