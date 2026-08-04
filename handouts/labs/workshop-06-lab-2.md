@@ -91,7 +91,7 @@ Identify the closest equivalent for the same requirement in your IDE. Do not rec
 
 ### Step 4: Verify the workspace
 
-Use the relevant checks:
+Run the relevant project checks:
 
 ```bash
 cd frontend
@@ -102,13 +102,27 @@ cd ../backend
 ./mvnw test
 ```
 
+Then verify the intended Copilot instruction scope:
+
+1. open a TypeScript or TSX file under `frontend/src/`;
+2. inspect the instruction, context, diagnostics, or debug surface available in your supported client;
+3. record whether the repository-wide and frontend-scoped instructions are shown as active or applied;
+4. repeat with a Java file under `backend/src/main/java/`;
+5. record whether the repository-wide and backend-scoped instructions are shown as active or applied.
+
 Expected baseline:
 
 - frontend lint succeeds;
 - frontend build succeeds;
 - backend tests report 2 tests with 0 failures;
-- frontend Copilot guidance does not apply to backend Java files;
-- backend Copilot guidance does not apply to frontend TypeScript files.
+- frontend-scoped guidance is associated with matching frontend files, not backend Java files;
+- backend-scoped guidance is associated with matching backend Java files, not frontend TypeScript files.
+
+If the client cannot expose applied-instruction evidence, record:
+
+> Configuration inspection completed; runtime application not verified in this client.
+
+Do not treat the presence of the committed instruction files alone as proof that the client applied them.
 
 ### Step 5: Record the decision
 
