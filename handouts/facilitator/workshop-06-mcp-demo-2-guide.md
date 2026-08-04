@@ -43,7 +43,15 @@ Ask participants to choose an option and justify it using:
 
 ## Recommended Resolution
 
-For this bounded endpoint check, keep `evaluate_script` blocked and use a direct deterministic command such as `curl`. Broader browser execution should require a task that cannot reasonably be completed with a narrower capability.
+Keep `evaluate_script` blocked unless the browser-specific claim justifies broader access.
+
+Choose the resolution that matches the claim:
+
+- To verify only that the backend endpoint is available and returns data, use a narrower deterministic command such as `curl`.
+- To verify that the frontend requested, bound, and rendered valid dashboard data, require browser evidence through an approved inspection capability or a human browser check.
+- If neither path is available, leave the browser-rendering claim unverified.
+
+Do not present a successful `curl` response as proof of frontend rendering or user-visible behavior.
 
 ## Teaching Point
 
