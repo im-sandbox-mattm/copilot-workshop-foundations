@@ -49,13 +49,16 @@ The same evidence could be gathered manually in DevTools or through browser auto
 
 Use the independent `curl` result as verification rather than asking MCP to verify its own conclusion.
 
-### Part 3: Restrict the tool set
+### Part 3: Establish the bounded failure
 
 1. Disable `list_network_requests`.
 2. Submit the same inspection task.
 3. Show that `get_network_request` requires a specific request identifier and is not an equivalent replacement.
-4. Do not approve `evaluate_script` merely to force completion.
-5. Ask: Is the correct outcome task failure, broader approval, or a different verification path?
+4. Keep `evaluate_script` blocked.
+5. Establish that the approved MCP toolset cannot complete the browser-inspection claim.
+6. Stop before choosing whether to broaden access, require a human browser check, perform a narrower independent check, or leave the claim unverified.
+
+Use Demo 2 to make and defend that decision.
 
 ## Governance Discussion
 
