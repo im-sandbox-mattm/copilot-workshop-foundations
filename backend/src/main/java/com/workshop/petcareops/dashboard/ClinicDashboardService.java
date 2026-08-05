@@ -1,18 +1,31 @@
 package com.workshop.petcareops.dashboard;
 
 import org.springframework.stereotype.Service;
-
 import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
 public class ClinicDashboardService {
 
+    private final DashboardRepository dashboardRepository;
+    private final DashboardSummaryEnricher dashboardSummaryEnricher;
+
+    public ClinicDashboardService(
+            DashboardRepository dashboardRepository,
+            DashboardSummaryEnricher dashboardSummaryEnricher
+    ) {
+        this.dashboardRepository = dashboardRepository;
+        this.dashboardSummaryEnricher = dashboardSummaryEnricher;
+    }
+
     public DashboardOverviewResponse getOverview() {
+        DashboardSnapshot snapshot = dashboardRepository.loadCurrentSnapshot();
+        dashboardSummaryEnricher.enrich();
+
         return new DashboardOverviewResponse(
-                "PetCare Operations",
-                "Downtown Day Shift",
-                "4 appointments active, 2 follow-ups to confirm before 17:00",
+                snapshot.clinicName(),
+                snapshot.locationLabel(),
+                snapshot.shiftSummary(),
                 List.of(
                         new AppointmentSummaryResponse(
                                 1001L,
