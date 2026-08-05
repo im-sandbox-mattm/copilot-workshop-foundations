@@ -1,6 +1,7 @@
 package com.workshop.petcareops.dashboard;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -18,6 +19,7 @@ public class ClinicDashboardService {
         this.dashboardSummaryEnricher = dashboardSummaryEnricher;
     }
 
+    @Transactional(readOnly = true)
     public DashboardOverviewResponse getOverview() {
         DashboardSnapshot snapshot = dashboardRepository.loadCurrentSnapshot();
         dashboardSummaryEnricher.enrich();

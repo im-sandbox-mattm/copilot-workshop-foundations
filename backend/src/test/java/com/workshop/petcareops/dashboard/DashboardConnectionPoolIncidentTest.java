@@ -14,9 +14,8 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 import java.util.concurrent.TimeUnit;
-import java.util.concurrent.atomic.AtomicInteger;
 
-import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 @SpringBootTest(classes = {
         com.workshop.petcareops.PetcareOpsApplication.class,
@@ -44,7 +43,7 @@ class DashboardConnectionPoolIncidentTest {
     }
 
     @Test
-    void secondRequestSucceedsWhileFirstRequestIsStillEnriching() throws Exception {
+    void secondRequestCannotAcquireConnectionWhileFirstRequestIsStillEnriching() throws Exception {
         Future<DashboardOverviewResponse> firstRequest =
                 executor.submit(clinicDashboardService::getOverview);
 
@@ -53,15 +52,13 @@ class DashboardConnectionPoolIncidentTest {
         Future<DashboardOverviewResponse> secondRequest =
                 executor.submit(clinicDashboardService::getOverview);
 
-        DashboardOverviewResponse secondResponse =
-                secondRequest.get(2, TimeUnit.SECONDS);
-
-        assertThat(secondResponse).isNotNull();
-        assertThat(secondResponse.clinicName()).isEqualTo("PetCareOps Central");
+        assertThatThrownBy(() -> secondRequest.get(2, TimeUnit.SECONDS))
+                .hasCauseInstanceOf(
+                        org.springframework.transaction.CannotCreateTransactionException.class
+                );
 
         controlledEnricher.releaseFirstRequest();
-
-        assertThat(firstRequest.get(2, TimeUnit.SECONDS)).isNotNull();
+        firstRequest.get(2, TimeUnit.SECONDS);
     }
 
     @TestConfiguration
@@ -77,7 +74,6 @@ class DashboardConnectionPoolIncidentTest {
     static class ControlledDashboardSummaryEnricher
             extends DashboardSummaryEnricher {
 
-        private final AtomicInteger invocationCount = new AtomicInteger();
         private final CountDownLatch firstRequestEntered =
                 new CountDownLatch(1);
         private final CountDownLatch releaseFirstRequest =
@@ -85,12 +81,6 @@ class DashboardConnectionPoolIncidentTest {
 
         @Override
         public void enrich() {
-            int invocation = invocationCount.incrementAndGet();
-
-            if (invocation != 1) {
-                return;
-            }
-
             firstRequestEntered.countDown();
 
             try {

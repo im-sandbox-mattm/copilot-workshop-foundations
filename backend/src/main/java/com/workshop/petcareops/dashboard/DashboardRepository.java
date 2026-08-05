@@ -4,7 +4,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.jdbc.core.simple.JdbcClient;
 import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Transactional;
 
 @Repository
 public class DashboardRepository {
@@ -17,8 +16,7 @@ public class DashboardRepository {
         this.jdbcClient = jdbcClient;
     }
 
-    @Transactional(readOnly = true)
-    public DashboardSnapshot loadCurrentSnapshot() {
+    DashboardSnapshot loadCurrentSnapshot() {
         long startedAt = System.nanoTime();
         log.info("event=dashboard_query_started snapshotId=1");
 
