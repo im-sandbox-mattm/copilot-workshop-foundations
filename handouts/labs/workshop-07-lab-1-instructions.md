@@ -127,16 +127,16 @@ If Copilot begins proposing fixes or a root cause, refine the prompt and restate
 
 ## Step 2 — Design the controlled reproduction
 
-Create the incident-evidence directory:
+## Step 2 — Design the controlled reproduction
+
+In a dedicated terminal, start from the repository root and run:
 
 ```bash
+cd backend
 mkdir -p target/incident-evidence
-```
 
-Before continuing, start the backend from the `backend` directory using the command below. Keep that terminal open for the rest of Lab 1.
-
-```bash
-./mvnw spring-boot:run -Dspring-boot.run.profiles=workshop-incident \
+./mvnw spring-boot:run \
+  -Dspring-boot.run.profiles=workshop-incident \
   2>&1 | tee target/incident-evidence/backend-runtime.log
 ```
 
