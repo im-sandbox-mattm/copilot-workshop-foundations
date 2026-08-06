@@ -43,7 +43,7 @@ Run:
 java -version
 curl --version
 ```
-Confirm that Java reports version 21 or later and that curl returns version information without an error
+Confirm that Java reports version 21 or later and that curl returns version information without an error.
 
 The repository includes the Maven wrapper, so Maven does not need to be installed separately. No external database setup is required, and the frontend does not need to be running for the core lab.
 
@@ -129,7 +129,7 @@ If Copilot begins proposing fixes or a root cause, refine the prompt and restate
 
 ## Step 2 — Design the controlled reproduction
 
-In a dedicated terminal, start from the repository root and run:
+In a dedicated terminal, start from the repository root and run (keep that terminal open for the rest of Lab 1)
 
 ```bash
 cd backend
@@ -139,6 +139,8 @@ mkdir -p target/incident-evidence
   -Dspring-boot.run.profiles=workshop-incident \
   2>&1 | tee target/incident-evidence/backend-runtime.log
 ```
+
+
 
 *`tee` keeps the backend logs visible in the terminal while also saving a copy to `target/incident-evidence/backend-runtime.log`.*
 
@@ -300,7 +302,7 @@ Before continuing, confirm the provisional record communicates that:
 
 > “The failing request is correlated across transport and backend runtime evidence. The suspected cause is supported but not yet verified. One candidate next targeted check is proposed for review.”
 
-If Copilot overstates certainty, ask it to downgrade unsupported claims and update the record.
+If Copilot overstates certainty, prompt Copilot to downgrade unsupported claims and update the record.
 
 ---
 
