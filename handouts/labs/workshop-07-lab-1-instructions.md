@@ -35,7 +35,7 @@ Before beginning, confirm:
 - `curl` is available;
 - you are using Bash or Zsh for the supplied commands;
 - port `8080` is available;
-- Copilot can inspect repository files and request approval to run terminal commands.
+
 
 Run:
 
@@ -43,7 +43,7 @@ Run:
 java -version
 curl --version
 ```
-[Confirm that Java reports version 21 or later and that curl returns version information without an error]
+Confirm that Java reports version 21 or later and that curl returns version information without an error
 
 The repository includes the Maven wrapper, so Maven does not need to be installed separately. No external database setup is required, and the frontend does not need to be running for the core lab.
 
@@ -127,8 +127,13 @@ If Copilot begins proposing fixes or a root cause, refine the prompt and restate
 
 ## Step 2 — Design the controlled reproduction
 
-Before continuing, start the backend from the `backend` directory using the command below. Keep that terminal open for the rest of Lab 1.
+Create the incident-evidence directory:
 
+```bash
+mkdir -p target/incident-evidence
+```
+
+Before continuing, start the backend from the `backend` directory using the command below. Keep that terminal open for the rest of Lab 1.
 
 ```bash
 ./mvnw spring-boot:run -Dspring-boot.run.profiles=workshop-incident \

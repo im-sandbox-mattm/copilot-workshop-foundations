@@ -2,6 +2,15 @@
 
 This repo is the exercise baseline for workshop modules 1-6.
 
+## Workshop 7 participants
+
+Use the instructions in:
+
+- `handouts/labs/workshop-07-lab-1-instructions.md`
+- `handouts/labs/workshop-07-lab-2-instructions.md`
+
+Do not use the general baseline startup directions below for Workshop 7. The Workshop 7 lab uses the `workshop-7-lab` tag and the `workshop-incident` backend profile.
+
 ## Purpose
 
 This is a compact, production-style training application designed to support:
@@ -60,7 +69,7 @@ Current baseline structure:
 ```text
 copilot-workshop-foundations/
 	backend/
-		src/main/java/... 
+		src/main/java/...
 		src/test/java/...
 		pom.xml
 	frontend/
