@@ -127,9 +127,7 @@ If Copilot begins proposing fixes or a root cause, refine the prompt and restate
 
 ## Step 2 — Design the controlled reproduction
 
-## Step 2 — Design the controlled reproduction
-
-In a dedicated terminal, start from the repository root and run (keep that terminal open for the rest of Lab 1)
+In a dedicated terminal, start from the repository root and run the following commands. Keep that terminal open for the rest of Lab 1.
 
 ```bash
 cd backend
