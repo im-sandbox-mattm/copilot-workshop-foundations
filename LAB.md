@@ -85,7 +85,7 @@ You do not need to run every command at every stage. Use the checks that are rel
 
 If a command fails or you are unsure what its output means, use Copilot to help interpret the evidence and decide what to check next.
 
-> **Sample data:** PetCareOps uses sample workshop data. The appointment, customer, pet, and clinician records shown by the dashboard are intentionally provided for the exercise. You do not need to configure or populate a production database.
+> **Sample data:** PetCareOps uses sample workshop data. The appointment, customer, pet, and clinician records shown on the dashboard are hard-coded for this exercise. You do not need to configure or populate a production database.
 
 ### Your work item
 
