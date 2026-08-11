@@ -10,9 +10,32 @@ Choose one of the two paths below.
 
 ---
 
-## Before You Start
+# Choose One Path
 
-### If you're using PetCareOps
+## Path A — Your Work + Approved MCP
+
+Choose this path if you have:
+
+- access to an approved Jira or GitLab MCP connection; and
+- a small real work item that is safe to work on locally.
+
+Choose a code-oriented item that can result in a small local code or test change.
+
+If those conditions are not true, use **Path B**.
+
+### MCP safety
+
+During the core lab, use connected Jira, GitLab, Confluence, or other shared systems for **read-only context**.
+
+Do not create or update tickets, branches, merge requests, pipelines, or other shared resources unless you are working in an explicitly approved sandbox.
+
+---
+
+## Path B — PetCareOps
+
+Use the provided PetCareOps repository.
+
+### Setup
 
 If you already have the repository:
 
@@ -31,7 +54,7 @@ git switch -c sdlc-lab-local origin/workshop-08-sdlc-prep
 
 Work on your local `sdlc-lab-local` branch. You do not need to push your changes.
 
-### PetCareOps requirements
+### Requirements
 
 - Java 21
 - Node.js `^20.19.0 || >=22.13.0`
@@ -55,50 +78,14 @@ npm run lint
 npm run dev
 ```
 
-The frontend runs at:
-
-```text
-http://localhost:5173
-```
-
-The backend runs at:
-
-```text
-http://localhost:8080
-```
+Frontend: `http://localhost:5173`  
+Backend: `http://localhost:8080`
 
 You do not need to run every command at every stage. Use the checks that are relevant to the work you changed.
 
 If a command fails or you are unsure what its output means, use Copilot to help interpret the evidence and decide what to check next.
 
 > **Sample data:** PetCareOps uses sample workshop data. The appointment, customer, pet, and clinician records shown by the dashboard are intentionally provided for the exercise. You do not need to configure or populate a production database.
-
-### MCP safety
-
-During the core lab, use connected Jira, GitLab, Confluence, or other shared systems for **read-only context**.
-
-Do not create or update tickets, branches, merge requests, pipelines, or other shared resources unless you are working in an explicitly approved sandbox.
-
----
-
-# Choose One Path
-
-## Path A — Your Work + Approved MCP
-
-Choose this path if you have:
-
-- access to an approved Jira or GitLab MCP connection; and
-- a small real work item that is safe to work on locally.
-
-Choose a code-oriented item that can result in a small local code or test change.
-
-If those conditions are not true, use **Path B**.
-
----
-
-## Path B — PetCareOps
-
-Use the provided PetCareOps repository.
 
 ### Your work item
 
@@ -125,7 +112,7 @@ Multiple reasonable solutions are possible.
 
 Use Copilot to understand and bound the work **before changing code**.
 
-### Path A
+## Path A
 
 Use Copilot and your approved MCP connection to:
 
@@ -138,7 +125,7 @@ Use Copilot and your approved MCP connection to:
 
 Do not change code during this stage.
 
-### Path B
+## Path B
 
 Use Copilot to inspect the repository and determine:
 
@@ -165,14 +152,14 @@ Before continuing, be able to explain:
 
 Use Copilot to implement the **smallest useful change**.
 
-### Path A
+## Path A
 
 - Implement or improve the selected local code slice.
 - Keep the change bounded to the work item.
 - Review Copilot's proposed edits before accepting them.
 - Do not push, open a merge request, or update shared work items unless explicitly authorized.
 
-### Path B
+## Path B
 
 - Implement CSV export for Today's Appointments.
 - Make the engineering decisions you identified during READ.
@@ -203,9 +190,18 @@ For the PetCareOps CSV exercise, verification should cover at least:
 
 ## 2. Run relevant checks
 
-For PetCareOps frontend changes, available checks include:
+### Path A
+
+Use your repository's existing test, build, or lint commands.
+
+If you are unsure what those commands are, use Copilot to inspect the repository configuration and identify the existing commands before running them.
+
+### Path B
+
+For frontend changes, available checks include:
 
 ```bash
+cd frontend
 npm test
 npm run build
 npm run lint
@@ -214,14 +210,15 @@ npm run lint
 If your implementation changes backend behavior, also run:
 
 ```bash
+cd backend
 ./mvnw test
 ```
 
-For Path A, use your repository's existing test, build, or lint commands. If you are unsure what they are, use Copilot to inspect the repository configuration and identify the existing commands.
+Run the checks that are relevant to the implementation you chose.
 
 ## 3. Review the actual changes
 
-Ask Copilot to review the SCM changes you made.
+Ask Copilot to review the actual SCM changes you made.
 
 Have it evaluate the changes for:
 
