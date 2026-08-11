@@ -5,7 +5,7 @@ This repo is the exercise baseline for workshop modules 1-6.
 ## Baseline startup
 
 - Java 21 is required for the Spring Boot backend.
-- Frontend tooling requires Node.js `^20.19.0 || >=22.12.0` and npm.
+- Frontend tooling requires Node.js `^20.19.0 || >=22.13.0` and npm.
 - Backend start: `cd backend && ./mvnw spring-boot:run`
 - Frontend install: `cd frontend && npm install`
 - Frontend start: `cd frontend && npm run dev`
