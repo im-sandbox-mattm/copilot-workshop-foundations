@@ -1,114 +1,262 @@
-# Workshop 8 Lab: SDLC Preparation
+# Workshop 8 Lab: Copilot Across the SDLC
 
-## Objective
+**Time:** approximately 30–40 minutes
 
-Practice the early stages of the software development lifecycle (SDLC) by
-turning a stakeholder feature request into clear, reviewable requirements
-artifacts. In this lab you will **not** write implementation code. You will
-produce the planning artifacts a team would use before any code is written.
+In this lab, you will use Copilot across a small development workflow:
 
-## Setup
+**Read → Do → Verify**
 
-1. Fetch the workshop starting branch:
+Choose one of the two paths below.
 
-   ```bash
-   git fetch origin workshop-08-sdlc-prep
-   ```
+---
 
-2. Create your own local working branch from it:
+## Before You Start
 
-   ```bash
-   git checkout -b sdlc-lab-local origin/workshop-08-sdlc-prep
-   ```
+### If you're using PetCareOps
 
-All of your work for this lab should be committed to your local
-`sdlc-lab-local` branch.
+If you already have the repository:
 
-## Verify Your Environment
+```bash
+git fetch origin
+git switch -c sdlc-lab-local origin/workshop-08-sdlc-prep
+```
 
-Confirm the baseline application runs before you start planning.
+If you're cloning it for the first time:
 
-Backend:
+```bash
+git clone https://github.com/im-sandbox-mattm/copilot-workshop-foundations.git
+cd copilot-workshop-foundations
+git switch -c sdlc-lab-local origin/workshop-08-sdlc-prep
+```
+
+Work on your local `sdlc-lab-local` branch. You do not need to push your changes.
+
+### PetCareOps requirements
+
+- Java 21
+- Node.js `^20.19.0 || >=22.13.0`
+
+Useful backend commands:
 
 ```bash
 cd backend
-java -version
 ./mvnw test
 ./mvnw spring-boot:run
 ```
 
-Confirm the backend responds:
-
-```
-GET http://localhost:8080/api/dashboard
-```
-
-Frontend (in a separate terminal):
+Useful frontend commands:
 
 ```bash
 cd frontend
-npm install
+npm ci
 npm test
 npm run build
 npm run lint
 npm run dev
 ```
 
-The frontend expects the backend at `http://localhost:8080` and runs on
-`http://localhost:5173` by default.
+The frontend runs at:
 
-## The Feature Request
+```text
+http://localhost:5173
+```
 
-Clinic reception staff have asked for a way to export the current day's
-dashboard appointment data so it can be shared with staff who do not have
-access to the application (for example, a covering receptionist or an
-off-site scheduling coordinator).
+The backend runs at:
 
-Stakeholders have described the need only in business terms:
+```text
+http://localhost:8080
+```
 
-- "I want to hand someone a file with today's appointments in it."
-- "It should be easy to open in a spreadsheet."
-- "It shouldn't slow down the dashboard people are already using."
+You do not need to run every command at every stage. Use the checks that are relevant to the work you changed.
 
-No technical approach has been decided yet. That is your job in this lab.
+If a command fails or you are unsure what its output means, use Copilot to help interpret the evidence and decide what to check next.
 
-## Your Task
+> **Sample data:** PetCareOps uses sample workshop data. The appointment, customer, pet, and clinician records shown by the dashboard are intentionally provided for the exercise. You do not need to configure or populate a production database.
 
-Working from the feature request above, produce the following planning
-artifacts:
+### MCP safety
 
-1. **Feature summary** — a short, plain-language restatement of the problem
-   and the value it delivers to clinic staff.
-2. **User stories** — written in standard "As a ___, I want ___, so that
-   ___" form, covering the primary use case and at least one edge case.
-3. **Acceptance criteria** — specific, testable conditions that must be true
-   for each user story to be considered done.
-4. **Non-functional considerations** — note any relevant concerns such as
-   data privacy, performance, and error handling expectations.
-5. **Open questions** — a list of questions you would bring back to the
-   stakeholder or the team before implementation begins.
+During the core lab, use connected Jira, GitLab, Confluence, or other shared systems for **read-only context**.
 
-## Constraints
+Do not create or update tickets, branches, merge requests, pipelines, or other shared resources unless you are working in an explicitly approved sandbox.
 
-- Do not write or modify any application code, tests, or configuration.
-- Do not describe or decide *where* in the codebase this feature would be
-  implemented, or *how* it would be implemented technically. This lab is
-  about requirements and planning only.
-- Keep your artifacts in your own notes or a new document on your
-  `sdlc-lab-local` branch. Do not modify existing project files.
+---
 
-## Deliverables
+# Choose One Path
 
-By the end of the lab you should have:
+## Path A — Your Work + Approved MCP
 
-- A feature summary
-- A set of user stories
-- Acceptance criteria for each user story
-- A short list of non-functional considerations
-- A list of open questions
+Choose this path if you have:
 
-## Wrap-Up
+- access to an approved Jira or GitLab MCP connection; and
+- a small real work item that is safe to work on locally.
 
-Commit your deliverables to your local `sdlc-lab-local` branch. Be ready to
-share your user stories and acceptance criteria with the group for
-discussion.
+Choose a code-oriented item that can result in a small local code or test change.
+
+If those conditions are not true, use **Path B**.
+
+---
+
+## Path B — PetCareOps
+
+Use the provided PetCareOps repository.
+
+### Your work item
+
+**Add CSV export to Today's Appointments.**
+
+### Acceptance criteria
+
+- A user can download the appointments currently shown in **Today's Appointments** as a CSV file.
+- Nested customer, pet, and clinician information is represented as useful CSV columns.
+- Commas, quotation marks, and line breaks in values do not corrupt the CSV.
+- The existing dashboard continues to work normally.
+
+Some implementation details are intentionally unspecified. You will need to make and justify reasonable engineering decisions, including:
+
+- which appointment fields should become CSV columns;
+- how nested values should be represented; and
+- how `startsAt` should be represented.
+
+Multiple reasonable solutions are possible.
+
+---
+
+# READ
+
+Use Copilot to understand and bound the work **before changing code**.
+
+### Path A
+
+Use Copilot and your approved MCP connection to:
+
+- retrieve the selected Jira or GitLab work item;
+- retrieve only the supporting context needed to understand the work;
+- identify the problem and acceptance criteria;
+- identify the smallest useful implementation slice;
+- identify the local files likely to be involved; and
+- surface unresolved questions, assumptions, or risks.
+
+Do not change code during this stage.
+
+### Path B
+
+Use Copilot to inspect the repository and determine:
+
+- where Today's Appointments is rendered;
+- where its data comes from;
+- what appointment data is currently available;
+- the smallest reasonable approach to the requested export;
+- which files are likely to change; and
+- what decisions you need to make about columns, nested data, and time representation.
+
+Do not change code during this stage.
+
+### Checkpoint
+
+Before continuing, be able to explain:
+
+- your proposed approach;
+- the scope of the change; and
+- any important assumptions or unresolved questions.
+
+---
+
+# DO
+
+Use Copilot to implement the **smallest useful change**.
+
+### Path A
+
+- Implement or improve the selected local code slice.
+- Keep the change bounded to the work item.
+- Review Copilot's proposed edits before accepting them.
+- Do not push, open a merge request, or update shared work items unless explicitly authorized.
+
+### Path B
+
+- Implement CSV export for Today's Appointments.
+- Make the engineering decisions you identified during READ.
+- Keep the change focused on the requested feature.
+- Review and adjust Copilot's edits rather than accepting them blindly.
+
+You may use the Copilot surface or workflow that makes sense for the task.
+
+### Checkpoint
+
+Confirm that the feature works locally before moving on.
+
+---
+
+# VERIFY
+
+Use deterministic checks **and** Copilot review.
+
+## 1. Test the behavior
+
+Add or improve meaningful tests for the behavior you changed.
+
+For the PetCareOps CSV exercise, verification should cover at least:
+
+- normal appointment data;
+- an empty appointment list; and
+- CSV-sensitive values such as commas, quotation marks, or line breaks.
+
+## 2. Run relevant checks
+
+For PetCareOps frontend changes, available checks include:
+
+```bash
+npm test
+npm run build
+npm run lint
+```
+
+If your implementation changes backend behavior, also run:
+
+```bash
+./mvnw test
+```
+
+For Path A, use your repository's existing test, build, or lint commands. If you are unsure what they are, use Copilot to inspect the repository configuration and identify the existing commands.
+
+## 3. Review the actual changes
+
+Ask Copilot to review the SCM changes you made.
+
+Have it evaluate the changes for:
+
+- correctness;
+- error handling;
+- security or unintended data exposure;
+- maintainability; and
+- missing or weak tests.
+
+Ask for concrete `file:line` findings where applicable.
+
+Treat this as **review only**. Do not automatically apply every suggested change.
+
+---
+
+# Done
+
+You are done when:
+
+- you used Copilot to understand and scope the work;
+- you produced a working local change;
+- relevant tests and checks have run; and
+- Copilot reviewed the actual changes you made.
+
+---
+
+# Optional Stretch
+
+If you finish early, choose one:
+
+- Add another CSV edge case and verify it.
+- Identify and improve a weak test.
+- Apply the same export concept to the clinician-load data.
+- Draft a backlog-ready work item for a follow-up improvement.
+
+If you have an explicitly approved Jira or GitLab sandbox, you may optionally use MCP to create that follow-up work item.
+
+Otherwise, keep the draft local.
