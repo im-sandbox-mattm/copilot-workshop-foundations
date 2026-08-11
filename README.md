@@ -1,31 +1,16 @@
 # Copilot Workshop Foundations
 
-This repo is the exercise baseline for workshop modules 1-6.
+PetCareOps is a compact full-stack application used for hands-on GitHub Copilot workshop exercises.
 
-## Baseline startup
+The application models a small pet-care operations platform used by reception staff and clinicians. The current dashboard displays clinic information, clinician load, and today's appointments using sample workshop data.
 
-- Java 21 is required for the Spring Boot backend.
-- Frontend tooling requires Node.js `^20.19.0 || >=22.13.0` and npm.
-- Backend start: `cd backend && ./mvnw spring-boot:run`
-- Frontend install: `cd frontend && npm install`
-- Frontend start: `cd frontend && npm run dev`
-- Frontend URL: `http://localhost:5173`
-- Backend URL: `http://localhost:8080`
-- Frontend tests: `cd frontend && npm test`
-- Frontend lint: `cd frontend && npm run lint`
-- Frontend build: `cd frontend && npm run build`
-- The dashboard loads sample appointment data from the backend API.
+## Workshop Lab
 
-## Purpose
+If you are participating in **Workshop 8: Copilot Across the SDLC**, start here:
 
-This is a compact, production-style training application designed to support:
+**[LAB.md](./LAB.md)**
 
-- prompting and context exercises
-- test generation
-- refactoring
-- secure coding
-- PR review
-- token optimization and instruction design
+The lab contains the participant setup instructions, exercise paths, acceptance criteria, and verification guidance.
 
 ## Stack
 
@@ -33,141 +18,124 @@ This is a compact, production-style training application designed to support:
 - Spring Boot 3.5
 - React 19
 - TypeScript
-- Maven for backend builds
-- npm and Vite for frontend builds
+- Maven
+- npm
+- Vite
+- Vitest
 
-## Business Story
-
-The application models a small pet-care operations platform used by reception staff and clinicians.
-
-Core workflow:
-
-1. staff manage customers and their pets
-2. appointments are scheduled with clinicians
-3. clinicians capture visit notes and treatment recommendations
-4. the frontend shows appointment history, current visit state, and follow-up actions
-
-The code should feel like a trimmed internal product, not a toy demo.
-
-## Domain Model
-
-Planned entities for the initial baseline:
-
-- `Customer`: primary contact details and preferred communication channel
-- `Pet`: species, breed, age, owner relationship, care flags
-- `Appointment`: scheduled time, status, clinician, reason for visit
-- `Clinician`: name, specialty, availability snapshot
-- `VisitNote`: summary, treatment plan, medication or follow-up instructions
-
-## Design Principles
-
-- realistic enough to feel like normal product code
-- small enough to explain quickly in a live workshop
-- prepared with reset points per module
-- seeded with intentionally weak Copilot context that improves across modules
-- balanced backend and frontend surfaces so Chat and Agent demos can cross the stack
-
-## Repo Shape
-
-Current baseline structure:
+## Repository Structure
 
 ```text
 copilot-workshop-foundations/
-	backend/
-		src/main/java/...
-		src/test/java/...
-		pom.xml
-	frontend/
-		src/
-		package.json
-	.github/
-		copilot-instructions.md
-		instructions/
-		prompts/
-	workshop-assets/
-		starter/
-		solution/
-	README.md
+├── .github/
+│   ├── copilot-instructions.md
+│   ├── instructions/
+│   └── prompts/
+├── .vscode/
+├── backend/
+│   ├── src/main/java/
+│   ├── src/test/java/
+│   ├── mvnw
+│   └── pom.xml
+├── frontend/
+│   ├── src/
+│   ├── package.json
+│   └── package-lock.json
+├── LAB.md
+└── README.md
 ```
 
-## Current Executable Slice
+## Requirements
 
-The first real workflow is a clinic dashboard view:
+### Backend
 
-- backend endpoint: `GET /api/dashboard`
-- seeded in-memory data for customers, pets, clinicians, and appointments
-- frontend dashboard that fetches and renders the daily appointment board
-- starter `.github/copilot-instructions.md` plus a stronger module-2 variant in `workshop-assets/solution/`
+Java 21 is required.
 
-This is deliberately small, but it is real code and a real API/UI flow.
+Confirm your version:
 
-## Module Slices
+```bash
+java -version
+```
 
-The same repo should support different exercise slices without forcing one long dependency chain.
+### Frontend
 
-| Module | Primary surface | Planned exercise shape |
-| --- | --- | --- |
-| 1. Beyond Autocomplete | backend + frontend + minimal `.github` context | show Ask vs Agent, `@workspace`, and a before/after instructions demo |
-| 2. Context Engineering | `.github/copilot-instructions.md`, prompt assets, a few representative files | improve prompts, open-tab context, and instruction quality |
-| 3. Legacy Modernization | isolated modernization branch or slice | narrow migration or upgrade task with clear reset |
-| 4.1 Testing | service layer plus one frontend component | generate missing tests and improve coverage |
-| 4.2 Refactoring | intentionally messy reminder drafting service | plan-first refactoring with checkpoints |
-| 5. Secure Coding | one backend flaw and one frontend flaw | use `/fix`, review prompts, and secure comment patterns |
-| 6.1 PR Review | prepared diff or review branch plus reusable review prompt | review AI-generated and human-generated changes |
-| 6.2 Token Optimization | verbose starter instructions plus optimized solution assets | reduce noise, tighten scope, and compare results |
+Use Node.js:
 
-## Staged Copilot Assets
+```text
+^20.19.0 || >=22.13.0
+```
 
-Start intentionally thin:
+with npm.
 
-- minimal `copilot-instructions.md`
-- no path-specific instructions yet
-- generic prompt examples only
+## Run the Application
 
-Then improve across modules:
+### Backend
 
-- stronger repository instructions in module 2
-- testing-specific prompt patterns in module 4.1
-- security-focused constraints in module 5
-- review prompt asset plus prepared review branch in module 6.1
-- token-optimization starter and solution assets in module 6.2
+From the repository root:
 
-## Delivery Milestones
+```bash
+cd backend
+./mvnw spring-boot:run
+```
 
-### Milestone 1
+The backend runs at:
 
-Repo definition and workshop mapping:
+```text
+http://localhost:8080
+```
 
-- business story
-- domain entities
-- repo layout
-- module-to-surface mapping
+The dashboard API is available at:
 
-### Milestone 2
+```text
+GET http://localhost:8080/api/dashboard
+```
 
-Executable baseline:
+### Frontend
 
-- Spring Boot backend scaffold
-- React frontend scaffold
-- one complete dashboard and appointment flow
-- one intentionally weak instructions file
+In a separate terminal:
 
-### Milestone 3
+```bash
+cd frontend
+npm ci
+npm run dev
+```
 
-Workshop-ready slices:
+The frontend runs at:
 
-- missing-test slice
-- messy-service slice
-- seeded security flaws
-- reset tags or branches per module
+```text
+http://localhost:5173
+```
 
-The frontend expects the backend at `http://localhost:8080` and runs on `http://localhost:5173` by default.
+The frontend expects the backend to be running at `http://localhost:8080`.
 
-## Immediate Next Build Step
+## Verify the Baseline
 
-1. replace the in-memory dashboard service with a slightly messier service layer for testing and refactoring modules
-2. seed reset points and stronger `.github` assets for module 2 and later
+### Backend
 
-## Status
+```bash
+cd backend
+./mvnw test
+```
 
-Executable project scaffolding is in place. The next milestone is adding module-specific slices on top of the current dashboard flow.
+### Frontend
+
+```bash
+cd frontend
+npm test
+npm run build
+npm run lint
+```
+
+You do not need to run every command after every change. Use the checks relevant to the work you are performing.
+
+## Sample Data
+
+PetCareOps uses sample workshop data for the dashboard.
+
+Appointment, customer, pet, clinician, and related dashboard information is provided by the application for the exercises. You do not need to configure or populate a production database to use the workshop application.
+
+## Copilot Configuration
+
+The repository includes reusable GitHub Copilot configuration under `.github/`, including repository instructions, path-specific instructions, and prompt assets.
+
+Treat these files as part of the repository context when using Copilot, just as you would other project-level engineering guidance.
