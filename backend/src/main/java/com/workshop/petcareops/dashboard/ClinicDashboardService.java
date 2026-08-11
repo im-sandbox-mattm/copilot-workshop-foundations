@@ -9,20 +9,16 @@ import java.util.List;
 public class ClinicDashboardService {
 
     private final DashboardRepository dashboardRepository;
-    private final DashboardSummaryEnricher dashboardSummaryEnricher;
 
     public ClinicDashboardService(
-            DashboardRepository dashboardRepository,
-            DashboardSummaryEnricher dashboardSummaryEnricher
+            DashboardRepository dashboardRepository
     ) {
         this.dashboardRepository = dashboardRepository;
-        this.dashboardSummaryEnricher = dashboardSummaryEnricher;
     }
 
     @Transactional(readOnly = true)
     public DashboardOverviewResponse getOverview() {
         DashboardSnapshot snapshot = dashboardRepository.loadCurrentSnapshot();
-        dashboardSummaryEnricher.enrich();
 
         return new DashboardOverviewResponse(
                 snapshot.clinicName(),
