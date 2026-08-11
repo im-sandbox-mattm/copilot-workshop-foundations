@@ -2,14 +2,19 @@
 
 This repo is the exercise baseline for workshop modules 1-6.
 
-## Workshop 7 participants
+## Baseline startup
 
-Use the instructions in:
-
-- `handouts/labs/workshop-07-lab-1-instructions.md`
-- `handouts/labs/workshop-07-lab-2-instructions.md`
-
-Do not use the general baseline startup directions below for Workshop 7. The Workshop 7 lab uses the `workshop-7-lab` tag and the `workshop-incident` backend profile.
+- Java 21 is required for the Spring Boot backend.
+- Frontend tooling requires Node.js `^20.19.0 || >=22.13.0` and npm.
+- Backend start: `cd backend && ./mvnw spring-boot:run`
+- Frontend install: `cd frontend && npm install`
+- Frontend start: `cd frontend && npm run dev`
+- Frontend URL: `http://localhost:5173`
+- Backend URL: `http://localhost:8080`
+- Frontend tests: `cd frontend && npm test`
+- Frontend lint: `cd frontend && npm run lint`
+- Frontend build: `cd frontend && npm run build`
+- The dashboard loads sample appointment data from the backend API.
 
 ## Purpose
 
@@ -155,25 +160,6 @@ Workshop-ready slices:
 - messy-service slice
 - seeded security flaws
 - reset tags or branches per module
-
-## Running The Baseline
-
-Backend:
-
-```bash
-cd backend
-export JAVA_HOME="$(brew --prefix openjdk@21)/libexec/openjdk.jdk/Contents/Home"
-export PATH="$JAVA_HOME/bin:$PATH"
-./mvnw spring-boot:run
-```
-
-Frontend:
-
-```bash
-cd frontend
-npm install
-npm run dev
-```
 
 The frontend expects the backend at `http://localhost:8080` and runs on `http://localhost:5173` by default.
 
