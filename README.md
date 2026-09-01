@@ -6,11 +6,11 @@ The application models a small pet-care operations platform used by reception st
 
 ## Workshop Lab
 
-If you are participating in **Workshop 8: Copilot Across the SDLC**, start here:
+If you are participating in the **Spec-Driven Development with GitHub Copilot and Spec Kit** workshop, start here:
 
-**[LAB.md](./LAB.md)**
+**[workshop/LAB-SDD.md](./workshop/LAB-SDD.md)**
 
-The lab contains the participant setup instructions, exercise paths, acceptance criteria, and verification guidance.
+The lab contains the participant setup instructions, guided Spec Kit workflow, checkpoints, and verification guidance.
 
 ## Stack
 
@@ -41,7 +41,8 @@ copilot-workshop-foundations/
 │   ├── src/
 │   ├── package.json
 │   └── package-lock.json
-├── LAB.md
+├── workshop/
+│   └── LAB-SDD.md
 └── README.md
 ```
 
